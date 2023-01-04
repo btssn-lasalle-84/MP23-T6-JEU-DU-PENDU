@@ -1,13 +1,19 @@
-TARGET = 
+TARGET = pendu.out
 SOURCES := $(wildcard *.cpp)
 HEADERS := $(wildcard *.h)
+OBJ := $(patsubst %.cpp, %.o, $(SOURCES))
 
 CFLAGS = -std=c++11 -Wall -I.
-CXX = g++ $(CFLAGS) -c 
-LD = g++
+CXX = g++ $(CFLAGS) -c
+LD = g++ -o
 RM = rm -f
 
-# TODO
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(LD) $@ $^
+%.o: %.cpp %.h
+	$(CXX) $(CFLAGS) $<
 
 
 .PHONY: check cppcheck format clean cleanall
