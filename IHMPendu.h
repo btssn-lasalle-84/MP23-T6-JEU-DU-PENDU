@@ -1,9 +1,8 @@
-
 #ifndef IHMPENDU_H
 #define IHMPENDU_H
 
 #include <string>
-
+#include "Pendu.h"
 
 using namespace std;
 
@@ -18,14 +17,13 @@ class IHMPendu
     IHMPendu();
     ~IHMPendu();
 
-    void afficherRegles() const;
-    void afficherInfos() const;
+    void afficherRegles() ;
+    void afficherInfos() ;
     void nomUtilisateur();
     void entrerUneLettre();
-    void afficherMot() const;
-    void afficherPendu(unsigned int echecs) const;
-    void afficherResume() const;
+    void afficherMot() ;
+    void afficherPendu(unsigned int echecs) ;
+    void afficherResume() ;
 };
 
 #endif
-
