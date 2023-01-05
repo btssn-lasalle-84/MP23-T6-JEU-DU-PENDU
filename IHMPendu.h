@@ -4,26 +4,23 @@
 #include <string>
 #include "Pendu.h"
 
-using namespace std;
-
-
-class IHMPendu 
+class IHMPendu
 {
   private:
-   string lettresDevinees;
-   string lettresUtilisees;
+    std::string lettresDevinees;
+    std::string lettresUtilisees;
 
   public:
     IHMPendu();
     ~IHMPendu();
 
-    void afficherRegles() ;
-    void afficherInfos() ;
+    void afficherRegles();
+    void afficherInfos();
     void nomUtilisateur();
     void entrerUneLettre();
-    void afficherMot() ;
-    void afficherPendu(unsigned int echecs) ;
-    void afficherResume() ;
+    void afficherMot();
+    void afficherPendu(unsigned int echecs);
+    void afficherResume();
 };
 
 #endif
