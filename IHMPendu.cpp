@@ -1,3 +1,4 @@
+
 #include "IHMPendu.h"
 
 #include <iostream>
@@ -13,7 +14,7 @@ IHMPendu::~IHMPendu()
 
 void IHMPendu::afficherRegles() const
 {
-    cout << "Jeu du pendu " << endl;
+    
 }
 
 void IHMPendu::afficherPendu(unsigned int echecs) const

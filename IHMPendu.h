@@ -1,3 +1,4 @@
+
 #ifndef IHMPENDU_H
 #define IHMPENDU_H
 
@@ -27,3 +28,4 @@ class IHMPendu
 };
 
 #endif
+
