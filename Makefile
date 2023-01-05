@@ -12,6 +12,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJ)
 	$(LD) $@ $^
+
 %.o: %.cpp %.h
 	$(CXX) $(CFLAGS) $<
 
