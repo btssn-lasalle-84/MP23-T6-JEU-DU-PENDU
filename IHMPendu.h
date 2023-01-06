@@ -2,6 +2,7 @@
 #define IHMPENDU_H
 
 #include <string>
+
 #include "Pendu.h"
 
 class IHMPendu

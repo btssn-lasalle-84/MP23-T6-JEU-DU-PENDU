@@ -13,20 +13,24 @@ class Pendu
   private:
     IHMPendu*                monIHM;
     std::vector<std::string> mots;
-    unsigned int             nombreEssaisMax;
-    unsigned int             echecs;
-    std::string              motADeviner;
     std::string              motActuel;
+    unsigned int             echecs;
+    unsigned int             nombreEssaisMax;
+    std::string              motADeviner;
     std::string              lettresUtilisees;
 
   public:
     Pendu();
     ~Pendu();
 
-    void choisirMot();
+    std::string  getMotADeviner();
+    std::string  getMotActuel();
+    unsigned int getEchecsMax();
+    unsigned int getEchecs();
+
     void jouer();
+    void choisirMot();
     void chercherLettre(char lettre);
     bool aGagne();
 };
-
 #endif

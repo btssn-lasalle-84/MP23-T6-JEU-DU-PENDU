@@ -1,18 +1,40 @@
 #include "Pendu.h"
 #include "IHMPendu.h"
+
 #include <fstream>
 
 using namespace std;
 
 Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "hello", "world", "couscous", "scooter" },
-    nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), motADeviner(""), motActuel("")
+    nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), motADeviner(""), motActuel(""),
+    echecs(0)
 {
 }
 
 Pendu::~Pendu()
 {
     delete monIHM;
+}
+
+string Pendu::getMotActuel()
+{
+    return this->motActuel;
+}
+
+unsigned int Pendu::getEchecs()
+{
+    return this->echecs;
+}
+
+unsigned int Pendu::getEchecsMax()
+{
+    return this->nombreEssaisMax;
+}
+
+string Pendu::getMotADeviner()
+{
+    return this->motADeviner;
 }
 
 void Pendu::choisirMot()
@@ -58,7 +80,6 @@ void Pendu::chercherLettre(char lettre)
 void Pendu::jouer()
 {
     monIHM->afficherRegles();
-    choisirMot();
 }
 
 bool Pendu::aGagne()
