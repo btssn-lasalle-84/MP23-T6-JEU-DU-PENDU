@@ -8,7 +8,7 @@
 
 class IHMPendu;
 
-class Pendu 
+class Pendu
 {
   private:
     IHMPendu*                monIHM;
@@ -18,15 +18,16 @@ class Pendu
     unsigned int             nombreEssaisMax;
     std::string              motADeviner;
     std::string              lettresUtilisees;
+
   public:
     Pendu();
     ~Pendu();
-  
+
     std::string  getMotADeviner();
     std::string  getMotActuel();
     unsigned int getEchecsMax();
     unsigned int getEchecs();
-    
+
     void jouer();
     void choisirMot();
     void chercherLettre(char lettre);
