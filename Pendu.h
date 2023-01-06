@@ -29,7 +29,6 @@ class Pendu
     
     void jouer();
     void choisirMot();
-    bool aGagne();
     void chercherLettre(char lettre);
     bool aGagne();
 };
