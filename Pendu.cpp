@@ -10,7 +10,6 @@ Pendu::Pendu() :
     nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), motADeviner(""), motActuel(""),
     echecs(0)
 {
-
 }
 
 Pendu::~Pendu()
@@ -81,7 +80,6 @@ void Pendu::chercherLettre(char lettre)
 void Pendu::jouer()
 {
     monIHM->afficherRegles();
-
 }
 
 bool Pendu::aGagne()
