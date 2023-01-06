@@ -23,10 +23,12 @@ string Pendu::getMotActuel()
 {
     return this->motActuel;
 }
+
 unsigned int Pendu::getEchecs()
 {
     return this->echecs;
 }
+
 unsigned int Pendu::getEchecsMax()
 {
     return this->nombreEssaisMax;
@@ -37,7 +39,25 @@ string Pendu::getMotADeviner()
     return this->motADeviner;
 }
 
-/*
+void Pendu::choisirMot()
+{
+    unsigned int nombreMots;
+
+    ifstream file("list/dictionaire.txt");
+    for(nombreMots = 0; file >> motADeviner; nombreMots++)
+    {
+    }
+
+    srand(time(NULL));
+    int randomIndex = rand() % nombreMots;
+    file.clear();
+
+    file.seekg(0, ios::beg);
+    for(unsigned int j = 0; j < randomIndex; j++)
+    {
+        file >> motADeviner;
+    }
+}
 
 void Pendu::chercherLettre(char lettre)
 {
@@ -45,7 +65,6 @@ void Pendu::chercherLettre(char lettre)
 
     if(motADeviner.find(lettre) != string::npos)
     {
-        cout << "Bien joué!" << endl;
         for(int i = 0; i < motADeviner.size(); i++)
         {
             if(motADeviner[i] == lettre)
@@ -56,12 +75,10 @@ void Pendu::chercherLettre(char lettre)
     }
     else
     {
-        cout << "Faux!" << endl;
         echecs++;
     }
-    //dessin(unsigned int echecs);
 }
-*/
+
 void Pendu::jouer()
 {
     monIHM->afficherRegles();
