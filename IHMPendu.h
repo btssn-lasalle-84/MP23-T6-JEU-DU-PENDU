@@ -1,19 +1,26 @@
-#IFNDEF IHMPENDU_H
-#DEFINE IHMPENDU_H
+#ifndef IHMPENDU_H
+#define IHMPENDU_H
 
-#include "IHMPendu.cpp"
+#include <string>
+#include "Pendu.h"
 
 class IHMPendu
 {
-    private:
+  private:
+    std::string lettresUtilisees;
+    std::string lettresDevinees;
 
+  public:
+    IHMPendu();
+    ~IHMPendu();
 
-    public:
-        IHMPendu();
-        ~IHMPendu();
-}
+    void afficherRegles();
+    void afficherInfos();
+    void nomUtilisateur();
+    void entrerUneLettre();
+    void afficherMot();
+    void afficherPendu(unsigned int echecs);
+    void afficherResume();
+};
 
-
-
-
-#ENDIF
+#endif
