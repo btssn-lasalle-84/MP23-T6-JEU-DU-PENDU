@@ -2,15 +2,14 @@
 #define IHMPENDU_H
 
 #include <string>
-#include "Pendu.h"
 
-using namespace std;
+#include "Pendu.h"
 
 class IHMPendu
 {
   private:
-    string lettresDevinees;
-    string lettresUtilisees;
+    std::string lettresDevinees;
+    std::string lettresUtilisees;
 
   public:
     IHMPendu();

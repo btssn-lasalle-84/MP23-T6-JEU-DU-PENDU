@@ -17,19 +17,20 @@ class Pendu
     unsigned int             echecs;
     unsigned int             nombreEssaisMax;
     std::string              motADeviner;
+    std::string              lettresUtilisees;
   public:
     Pendu();
     ~Pendu();
   
-    std::string getMotADeviner();
-    std::string getMotActuel();
+    std::string  getMotADeviner();
+    std::string  getMotActuel();
     unsigned int getEchecsMax();
     unsigned int getEchecs();
     
     void jouer();
     void choisirMot();
+    bool aGagne();
     void chercherLettre(char lettre);
     bool aGagne();
 };
-
 #endif

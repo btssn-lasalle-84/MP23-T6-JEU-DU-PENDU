@@ -1,6 +1,9 @@
 #include "IHMPendu.h"
 #include "Pendu.h"
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 IHMPendu::IHMPendu() : lettresUtilisees(""), lettresDevinees("")
 {

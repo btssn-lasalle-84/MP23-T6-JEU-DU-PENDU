@@ -1,6 +1,8 @@
 #include "Pendu.h"
 #include "IHMPendu.h"
-#include <iostream>
+
+#include <fstream>
+
 using namespace std;
 
 Pendu::Pendu() :
@@ -8,10 +10,7 @@ Pendu::Pendu() :
     nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), motADeviner(""), motActuel(""),
     echecs(0)
 {
-    // 1. initialiser le générateur !
-    // 2. c'est une méthode
-    // std::string motADeviner = mots[rand() % mots.size()];
-    // string motActuel(motADeviner.size(), '-'); // A _ _ _ Z
+
 }
 
 Pendu::~Pendu()
@@ -82,4 +81,17 @@ void Pendu::chercherLettre(char lettre)
 void Pendu::jouer()
 {
     monIHM->afficherRegles();
+
+}
+
+bool Pendu::aGagne()
+{
+    if(echecs == nombreEssaisMax)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
