@@ -11,7 +11,28 @@ using namespace std;
 Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "hello", "world", "couscous", "scooter" },
     nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), echecs(0), motADeviner(""),
-    motMasque("")
+    motMasque("")void Pendu::jouer()
+{
+    monIHM->afficherRegles();
+    monIHM->saisirNomUtilisateur();
+
+    // une partie
+    choisirMot();
+    masquerMot();
+    char lettre = '\0';
+    do
+    {
+        lettre = monIHM->entrerUneLettre();
+        verifierLettre();
+        remplacerLettre(lettre);
+        monIHM->afficherMot();
+        monIHM->afficherInfos();
+        monIHM->afficherPendu(echecs);
+    } while(!estFinie());
+
+    monIHM->afficherResume();
+}
+
 {
     srand(time(NULL));
 }
@@ -53,7 +74,7 @@ void Pendu::remplacerLettre(char lettre)
     {
     }
 }
-void Pendu::verifierLettres()
+void Pendu::verifierLettre()
 {
     char lettre = monIHM->entrerUneLettre();
     lettre      = tolower(lettre);
