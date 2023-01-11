@@ -72,15 +72,15 @@ void Pendu::jouer()
         monIHM->afficherPendu(echecs);
     } while(!estFinie());
 
-    monIHM->afficherResume();
+    monIHM->afficherResume(echecs, nombreEssaisMax, motADeviner);
 }
 
 bool Pendu::estFinie() const
 {
-    return (echecs >= nombreEssaisMax);
+    return (echecs >= nombreEssaisMax || motADeviner == motMasque);
 }
 
 bool Pendu::aGagne() const
 {
-    return (echecs < nombreEssaisMax);
+    return (motADeviner == motMasque);
 }

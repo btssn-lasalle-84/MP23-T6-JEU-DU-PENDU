@@ -55,8 +55,20 @@ void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
     cout << "Lettres déjà utilisées : " << lettresUtilisees << endl;
 }
 
-void IHMPendu::afficherResume()
+void IHMPendu::afficherResume(unsigned int       echecs,
+                              const unsigned int nombreEssaisMax,
+                              string             motADeviner)
 {
+    if(aGagne)
+    {
+        cout << "Bravo ! Vous avez trouvé le mot en " << echecs << " tentatives"
+             << endl;
+    }
+    else
+    {
+        cout << "Aïe ! Vous avez atteint la limite de tentatives, le mot était "
+             << motADeviner << endl;
+    }
 }
 string IHMPendu::saisirNomUtilisateur()
 {
