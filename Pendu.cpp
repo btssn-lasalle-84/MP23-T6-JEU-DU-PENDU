@@ -13,27 +13,6 @@ Pendu::Pendu() :
     nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), echecs(0), motADeviner(""),
     motMasque("")void Pendu::jouer()
 {
-    monIHM->afficherRegles();
-    monIHM->saisirNomUtilisateur();
-
-    // une partie
-    choisirMot();
-    masquerMot();
-    char lettre = '\0';
-    do
-    {
-        lettre = monIHM->entrerUneLettre();
-        verifierLettre();
-        remplacerLettre(lettre);
-        monIHM->afficherMot();
-        monIHM->afficherInfos();
-        monIHM->afficherPendu(echecs);
-    } while(!estFinie());
-
-    monIHM->afficherResume();
-}
-
-{
     srand(time(NULL));
 }
 
