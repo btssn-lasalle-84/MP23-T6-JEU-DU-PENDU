@@ -1,7 +1,6 @@
 #include "IHMPendu.h"
 #include "Pendu.h"
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -42,41 +41,31 @@ void IHMPendu::afficherPendu(unsigned int echecs)
     }
     cout << endl;
 }
-void IHMPendu::nomUtilisateur()
-{
-    string nom;
-    cout << "Saisisez Votre pseudo";
-    cin >> nom;
-}
 
 void IHMPendu::afficherInfos()
 {
-    Pendu Pendu;
-    cout << "Mot à deviner: " << Pendu.getMotActuel() << endl;
-    cout << "Essais restants: " << Pendu.getEchecsMax() - Pendu.getEchecs()
-         << endl;
-    cout << "Lettres utilisées: " << lettresUtilisees << endl;
 }
 
-void IHMPendu::entrerUneLettre()
-{
-    // vérifier si c'est une lettre "valide" (c)
-
-    // pendu.chercherLettre(char lettre);
-}
 void IHMPendu::afficherMot()
 {
 }
 
 void IHMPendu::afficherResume()
 {
-    Pendu Pendu;
-    if(Pendu.aGagne() == 1)
-    {
-        cout << "Perdu! Le mot était " << Pendu.getMotADeviner() << endl;
-    }
-    else
-    {
-        cout << "Trouvé! Le mot était" << Pendu.getMotADeviner() << endl;
-    }
+}
+string IHMPendu::saisirNomUtilisateur()
+{
+    string nom;
+    cout << "Saisisez votre pseudo : ";
+    cin >> nom;
+    return nom;
+}
+
+char IHMPendu::entrerUneLettre()
+{
+    // vérifier si c'est une lettre "valide" (c)
+    char lettre = '\0';
+    cout << "lettre : ";
+    cin >> lettre;
+    return lettre;
 }

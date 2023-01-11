@@ -5,6 +5,5 @@ int main()
     Pendu pendu;
 
     pendu.jouer();
-
     return 0;
 }

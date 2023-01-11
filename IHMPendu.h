@@ -2,7 +2,6 @@
 #define IHMPENDU_H
 
 #include <string>
-
 #include "Pendu.h"
 
 class IHMPendu
@@ -15,13 +14,13 @@ class IHMPendu
     IHMPendu();
     ~IHMPendu();
 
-    void afficherRegles();
-    void afficherInfos();
-    void nomUtilisateur();
-    void entrerUneLettre();
-    void afficherMot();
-    void afficherPendu(unsigned int echecs);
-    void afficherResume();
+    void        afficherRegles();
+    void        afficherPendu(unsigned int echecs);
+    void        afficherInfos();
+    void        afficherMot();
+    void        afficherResume();
+    std::string saisirNomUtilisateur();
+    char        entrerUneLettre();
 };
 
 #endif
