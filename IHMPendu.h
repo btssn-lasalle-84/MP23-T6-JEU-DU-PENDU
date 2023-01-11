@@ -23,6 +23,7 @@ class IHMPendu
     void afficherResume();
 
     std::string saisirNomUtilisateur();
+    void        afficherErreurLettre();
     char        entrerUneLettre();
 };
 

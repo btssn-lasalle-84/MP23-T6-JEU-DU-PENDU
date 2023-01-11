@@ -53,6 +53,19 @@ void Pendu::remplacerLettre(char lettre)
     {
     }
 }
+void Pendu::verifierLettres()
+{
+    char lettre = monIHM->entrerUneLettre();
+    lettre      = tolower(lettre);
+    if(isalpha(lettre))
+    {
+        remplacerLettres(lettre);
+    }
+    else
+    {
+        monIHM->afficherErreurLettre();
+    }
+}
 
 void Pendu::jouer()
 {
