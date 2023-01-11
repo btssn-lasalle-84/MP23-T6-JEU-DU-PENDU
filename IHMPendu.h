@@ -16,7 +16,9 @@ class IHMPendu
 
     void afficherRegles();
     void afficherPendu(unsigned int echecs);
-    void afficherInfos();
+    void afficherInfos(const unsigned int nombreEssaisMax,
+                       unsigned int       echecs,
+                       std::string        lettresUtilisees);
     void afficherMot(std::string motMasque);
     void afficherResume();
 

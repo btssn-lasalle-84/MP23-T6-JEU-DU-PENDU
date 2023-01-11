@@ -44,6 +44,10 @@ void Pendu::masquerMot()
 void Pendu::remplacerLettre(char lettre)
 {
     lettresUtilisees += lettre;
+#ifdef DEBUG_PENDU
+    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] "
+              << "lettresUtilisees = " << lettresUtilisees << std::endl;
+#endif
 
     for(size_t i = 0; i < motADeviner.size(); i++)
     {
@@ -64,7 +68,7 @@ void Pendu::jouer()
         lettre = monIHM->entrerUneLettre();
         remplacerLettre(lettre);
         monIHM->afficherMot(motMasque);
-        monIHM->afficherInfos();
+        monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
         monIHM->afficherPendu(echecs);
     } while(!estFinie());
 

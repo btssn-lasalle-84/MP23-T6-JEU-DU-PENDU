@@ -42,13 +42,17 @@ void IHMPendu::afficherPendu(unsigned int echecs)
     cout << endl;
 }
 
-void IHMPendu::afficherInfos()
-{
-}
-
 void IHMPendu::afficherMot(string motMasque)
 {
     cout << "Mot à deviner : " << motMasque << endl;
+}
+
+void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
+                             unsigned int       echecs,
+                             string             lettresUtilisees)
+{
+    cout << "Nombre d'essais restant : " << nombreEssaisMax - echecs << endl;
+    cout << "Lettres déjà utilisées : " << lettresUtilisees << endl;
 }
 
 void IHMPendu::afficherResume()

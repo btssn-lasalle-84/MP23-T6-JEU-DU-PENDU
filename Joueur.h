@@ -6,8 +6,6 @@
 class Joueur
 {
   private:
-
-
   public:
     Joueur();
     ~Joueur();
