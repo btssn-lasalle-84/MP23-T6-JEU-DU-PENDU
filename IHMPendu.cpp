@@ -48,9 +48,8 @@ void IHMPendu::afficherInfos()
 
 void IHMPendu::afficherMot()
 {
-    //for(size_t i = 0; i < motADeviner.size(); i++)
+    // for(size_t i = 0; i < motADeviner.size(); i++)
     {
-
     }
 }
 
