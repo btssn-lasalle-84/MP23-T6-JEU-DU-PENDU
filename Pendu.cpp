@@ -11,7 +11,7 @@ using namespace std;
 Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "hello", "world", "couscous", "scooter" },
     nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), echecs(0), motADeviner(""),
-    motMasque("")void Pendu::jouer()
+    motMasque("")
 {
     srand(time(NULL));
 }
