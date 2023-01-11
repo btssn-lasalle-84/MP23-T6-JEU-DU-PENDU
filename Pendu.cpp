@@ -60,6 +60,19 @@ void Pendu::remplacerLettres(char lettre)
         echecs++;
     }
 }
+void Pendu::verifierLettres()
+{
+    char lettre = monIHM->entrerUneLettre();
+    lettre      = tolower(lettre);
+    if(isalpha(lettre))
+    {
+        remplacerLettres(lettre);
+    }
+    else
+    {
+        monIHM->afficherErreurLettre();
+    }
+}
 
 void Pendu::jouer()
 {
@@ -72,6 +85,7 @@ void Pendu::jouer()
     do
     {
         lettre = monIHM->entrerUneLettre();
+        verifierLettres();
         // remplacerLettres(lettre);
         monIHM->afficherMot();
         monIHM->afficherInfos();
