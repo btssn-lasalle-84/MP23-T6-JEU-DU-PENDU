@@ -33,6 +33,7 @@ void Pendu::choisirMot()
 {
     int numeroMot = rand() % mots.size();
     motADeviner   = mots[numeroMot];
+
 #ifdef DEBUG_PENDU
     std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] "
               << "numeroMot = " << numeroMot << std::endl;
@@ -41,23 +42,26 @@ void Pendu::choisirMot()
 #endif
 }
 
+void Pendu::masquerMot()
+{
+    motMasque        = motADeviner;
+    size_t tailleMot = motADeviner.size();
+    for(size_t i = 1; i < tailleMot - 1; i++)
+    {
+        motMasque[i] = '_';
+    }
+#ifdef DEBUG_PENDU
+    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] "
+              << "motMasque = " << motMasque << std::endl;
+#endif
+}
+
 void Pendu::remplacerLettres(char lettre)
 {
     lettresUtilisees += lettre;
 
-    if(motADeviner.find(lettre) != string::npos)
+    for(size_t i = 0; i < motADeviner.size(); i++)
     {
-        for(size_t i = 0; i < motADeviner.size(); i++)
-        {
-            if(motADeviner[i] == lettre)
-            {
-                motMasque[i] = lettre;
-            }
-        }
-    }
-    else
-    {
-        echecs++;
     }
 }
 
@@ -68,6 +72,7 @@ void Pendu::jouer()
 
     // une partie
     choisirMot();
+    masquerMot();
     char lettre = '\0';
     do
     {

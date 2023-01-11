@@ -26,6 +26,7 @@ class Pendu
     ~Pendu();
 
     void choisirMot();
+    void masquerMot();
     void jouer();
     void remplacerLettres(char lettre);
     bool estFinie() const;
