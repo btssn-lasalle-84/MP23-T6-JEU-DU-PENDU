@@ -59,7 +59,7 @@ void Pendu::verifierLettre()
     lettre      = tolower(lettre);
     if(isalpha(lettre))
     {
-        remplacerLettres(lettre);
+        remplacerLettre(lettre);
     }
     else
     {
