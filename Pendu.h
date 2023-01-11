@@ -16,7 +16,7 @@ class Pendu
     unsigned int             nombreEssaisMax;
     unsigned int             echecs;
     std::string              motADeviner;
-    std::string              motActuel;
+    std::string              motMasque;
     std::string              lettresUtilisees;
 
   public:
@@ -25,7 +25,7 @@ class Pendu
 
     void choisirMot();
     void jouer();
-    void chercherLettre(char lettre);
+    void remplacerLettres(char lettre);
     bool aGagne();
 };
 

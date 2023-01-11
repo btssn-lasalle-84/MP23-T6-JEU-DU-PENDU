@@ -35,7 +35,7 @@ void Pendu::choisirMot()
     }
 }
 
-void Pendu::chercherLettre(char lettre)
+void Pendu::remplacerLettres(char lettre)
 {
     lettresUtilisees += lettre;
 
@@ -57,18 +57,21 @@ void Pendu::chercherLettre(char lettre)
 
 void Pendu::jouer()
 {
-    monIHM->afficherRegles();
+    monIHM::afficherRegles();
     choisirMot();
+
+    while(echecs < nombreEssaisMax && motMasque != motADeviner)
+    {
+        monIHM->entrerLettre();
+        remplacerLettres(char lettre);
+        afficherMot();
+        afficherInfos();
+        afficherPendu(unsigned int echecs);
+    }
+    afficherResume();
 }
 
 bool Pendu::aGagne()
 {
-    if(echecs == nombreEssaisMax)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
+    return (echecs < nombreEssaisMax)
 }

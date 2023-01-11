@@ -7,8 +7,8 @@
 class IHMPendu
 {
   private:
-    std::string lettresDevinees;
     std::string lettresUtilisees;
+    std::string lettresDevinees;
 
   public:
     IHMPendu();
