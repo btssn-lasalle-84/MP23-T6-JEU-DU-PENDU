@@ -1,10 +1,23 @@
-#include "Pendu.h"
+#include "Joueur.h"
 
-int main()
+#ifdef DEBUG_JOUEUR
+#include <iostream>
+#endif
+
+using namespace std;
+
+Joueur::Joueur()
 {
-    Pendu pendu;
+#ifdef DEBUG_JOUEUR
+    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] " << this
+              << std::endl;
+#endif
+}
 
-    pendu.jouer();
-
-    return 0;
+Joueur::~Joueur()
+{
+#ifdef DEBUG_JOUEUR
+    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] " << this
+              << std::endl;
+#endif
 }

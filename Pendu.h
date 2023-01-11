@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+#define DEBUG_PENDU
+
 #define NB_ESSAIS_MAX_DEFAUT 8
 
 class IHMPendu;
@@ -26,7 +28,8 @@ class Pendu
     void choisirMot();
     void jouer();
     void remplacerLettres(char lettre);
-    bool aGagne();
+    bool estFinie() const;
+    bool aGagne() const;
 };
 
 #endif

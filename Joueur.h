@@ -1,10 +1,16 @@
-#include "Pendu.h"
+#ifndef JOUEUR_H
+#define JOUEUR_H
 
-int main()
+#define DEBUG_JOUEUR
+
+class Joueur
 {
-    Pendu pendu;
+  private:
 
-    pendu.jouer();
 
-    return 0;
-}
+  public:
+    Joueur();
+    ~Joueur();
+};
+
+#endif // JOUEUR_H

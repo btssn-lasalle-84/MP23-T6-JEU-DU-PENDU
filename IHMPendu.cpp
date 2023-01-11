@@ -41,22 +41,9 @@ void IHMPendu::afficherPendu(unsigned int echecs)
     }
     cout << endl;
 }
-void IHMPendu::nomUtilisateur()
-{
-    string nom;
-    cout << "Saisisez Votre pseudo";
-    cin >> nom;
-}
 
 void IHMPendu::afficherInfos()
 {
-}
-
-void IHMPendu::entrerUneLettre()
-{
-    // vérifier si c'est une lettre "valide" (c)
-
-    pendu.remplacerLettres(char lettre);
 }
 
 void IHMPendu::afficherMot()
@@ -65,13 +52,20 @@ void IHMPendu::afficherMot()
 
 void IHMPendu::afficherResume()
 {
-    if(Pendu::aGagne())
-    {
-        cout << "Perdu ! ";
-    }
-    else
-    {
-        cout << "Trouvé ! ";
-    }
-    cout << "Le mot était " << pendu.getMotADeviner << endl;
+}
+string IHMPendu::saisirNomUtilisateur()
+{
+    string nom;
+    cout << "Saisisez votre pseudo : ";
+    cin >> nom;
+    return nom;
+}
+
+char IHMPendu::entrerUneLettre()
+{
+    // vérifier si c'est une lettre "valide" (c)
+    char lettre = '\0';
+    cout << "lettre : ";
+    cin >> lettre;
+    return lettre;
 }
