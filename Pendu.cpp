@@ -13,33 +13,17 @@ Pendu::Pendu() :
     nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), echecs(0), motADeviner(""),
     motMasque("")
 {
-#ifdef DEBUG_PENDU
-    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] " << this
-              << std::endl;
-#endif
     srand(time(NULL));
 }
 
 Pendu::~Pendu()
 {
     delete monIHM;
-#ifdef DEBUG_PENDU
-    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] " << this
-              << std::endl;
-#endif
 }
 
 void Pendu::choisirMot()
 {
-    int numeroMot = rand() % mots.size();
-    motADeviner   = mots[numeroMot];
-
-#ifdef DEBUG_PENDU
-    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] "
-              << "numeroMot = " << numeroMot << std::endl;
-    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] "
-              << "motADeviner = " << motADeviner << std::endl;
-#endif
+    motADeviner = mots[rand() % mots.size()];
 }
 
 void Pendu::masquerMot()
@@ -50,13 +34,14 @@ void Pendu::masquerMot()
     {
         motMasque[i] = '_';
     }
+
 #ifdef DEBUG_PENDU
     std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] "
               << "motMasque = " << motMasque << std::endl;
 #endif
 }
 
-void Pendu::remplacerLettres(char lettre)
+void Pendu::remplacerLettre(char lettre)
 {
     lettresUtilisees += lettre;
 
@@ -77,8 +62,8 @@ void Pendu::jouer()
     do
     {
         lettre = monIHM->entrerUneLettre();
-        // remplacerLettres(lettre);
-        monIHM->afficherMot();
+        remplacerLettre(lettre);
+        monIHM->afficherMot(motMasque);
         monIHM->afficherInfos();
         monIHM->afficherPendu(echecs);
     } while(!estFinie());

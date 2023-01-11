@@ -14,11 +14,12 @@ class IHMPendu
     IHMPendu();
     ~IHMPendu();
 
-    void        afficherRegles();
-    void        afficherPendu(unsigned int echecs);
-    void        afficherInfos();
-    void        afficherMot();
-    void        afficherResume();
+    void afficherRegles();
+    void afficherPendu(unsigned int echecs);
+    void afficherInfos();
+    void afficherMot(std::string motMasque);
+    void afficherResume();
+
     std::string saisirNomUtilisateur();
     char        entrerUneLettre();
 };

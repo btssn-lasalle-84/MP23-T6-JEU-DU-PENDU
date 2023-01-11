@@ -46,12 +46,9 @@ void IHMPendu::afficherInfos()
 {
 }
 
-void IHMPendu::afficherMot()
+void IHMPendu::afficherMot(string motMasque)
 {
-    //for(size_t i = 0; i < motADeviner.size(); i++)
-    {
-
-    }
+    cout << "Mot à deviner : " << motMasque << endl;
 }
 
 void IHMPendu::afficherResume()
