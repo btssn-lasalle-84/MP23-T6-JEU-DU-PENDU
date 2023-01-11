@@ -51,11 +51,11 @@ void IHMPendu::nomUtilisateur()
 
 void IHMPendu::afficherInfos()
 {
-    Pendu Pendu;
+    /*
     cout << "Mot à deviner: " << Pendu.getMotActuel() << endl;
-    cout << "Essais restants: " << Pendu.getEchecsMax() - Pendu.getEchecs()
-         << endl;
-    cout << "Lettres utilisées: " << lettresUtilisees << endl;
+    cout << "Essais restants: " << Pendu.getEchecsMax() - Pendu.getEchecs() <<
+    endl; cout << "Lettres utilisées: " << lettresUtilisees << endl;
+    */
 }
 
 void IHMPendu::entrerUneLettre()
@@ -70,13 +70,12 @@ void IHMPendu::afficherMot()
 
 void IHMPendu::afficherResume()
 {
-    Pendu Pendu;
-    if(Pendu.aGagne() == 1)
-    {
-        cout << "Perdu! Le mot était " << Pendu.getMotADeviner() << endl;
-    }
-    else
-    {
-        cout << "Trouvé! Le mot était" << Pendu.getMotADeviner() << endl;
-    }
+    /* if(Pendu::aGagne() == 1)
+     {
+         cout << "Perdu! Le mot était " << motADeviner << endl;
+     }
+     else
+     {
+         cout << "Trouvé! Le mot était" << motADeviner << endl;
+     }*/
 }
