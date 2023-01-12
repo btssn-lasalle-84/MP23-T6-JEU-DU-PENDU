@@ -12,9 +12,25 @@ IHMPendu::~IHMPendu()
 {
 }
 
-void IHMPendu::afficherRegles()
+void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax)
 {
-    cout << "Jeu du pendu" << endl;
+    cout << "Bienvenue au jeu du pendu ! Voici les règles :" << endl << endl;
+    cout << "1. Un mot sera choisi au hasard pour que vous deviniez." << endl;
+    cout << "2. Vous aurez un maximum de " << nombreEssaisMax
+         << " tentatives pour deviner le mot correctement." << endl;
+    cout << "3. Vous pouvez deviner une lettre à la fois. Si la lettre est "
+            "dans le mot, elle sera révélée à la bonne position."
+         << endl;
+    cout << "4. Si la lettre n'est pas dans le mot, vous perdrez une tentative."
+         << endl;
+    cout << "5. Si vous révélez le mot entier avant d'épuiser vos tentatives, "
+            "vous gagnez le jeu."
+         << endl;
+    cout << "6. Si vous épuisez vos tentatives avant de révéler le mot entier, "
+            "vous perdez le jeu."
+         << endl
+         << endl;
+    cout << "Bonne chance ! Commençons le jeu." << endl << endl;
 }
 
 void IHMPendu::afficherPendu(unsigned int echecs)
