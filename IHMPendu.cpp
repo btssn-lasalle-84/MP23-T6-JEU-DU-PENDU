@@ -61,7 +61,6 @@ void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
 {
     cout << "Nombre d'essais restant : " << nombreEssaisMax - echecs << endl;
     cout << "Lettres déjà utilisées : " << lettresUtilisees << endl;
-    afficherPendu(echecs);
 }
 
 void IHMPendu::afficherResume(unsigned int       echecs,

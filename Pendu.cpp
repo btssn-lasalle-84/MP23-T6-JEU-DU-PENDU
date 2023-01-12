@@ -94,15 +94,16 @@ void Pendu::jouer()
     // une partie
     choisirMot();
     masquerMot();
+
     char lettre = '\0';
     do
     {
         monIHM->afficherMot(motMasque);
         verifierLettre(lettre);
+        monIHM->afficherPendu(echecs);
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
     } while(!estFinie());
 
     victoire = aGagne(motADeviner, motMasque);
     monIHM->afficherResume(echecs, motADeviner, victoire, nombreEssaisMax);
-    delete monIHM;
 }
