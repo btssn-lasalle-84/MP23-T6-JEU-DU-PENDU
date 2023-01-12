@@ -20,6 +20,7 @@ class Pendu
     std::string              motADeviner;
     std::string              motMasque;
     std::string              lettresUtilisees;
+    bool                     victoire;
 
   public:
     Pendu();
@@ -30,7 +31,7 @@ class Pendu
     void jouer();
     void remplacerLettre(char lettre);
     bool estFinie() const;
-    bool aGagne() const;
+    bool aGagne(std::string motADeviner, std::string motMasque) const;
 };
 
 #endif

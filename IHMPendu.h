@@ -20,9 +20,9 @@ class IHMPendu
                        unsigned int       echecs,
                        std::string        lettresUtilisees);
     void afficherMot(std::string motMasque);
-    void afficherResume(unsigned int       echecs,
-                        const unsigned int nombreEssaisMax,
-                        std::string        motADeviner);
+    void afficherResume(unsigned int echecs,
+                        std::string  motADeviner,
+                        bool         victoire);
 
     std::string saisirNomUtilisateur();
     char        entrerUneLettre();

@@ -55,11 +55,11 @@ void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
     cout << "Lettres déjà utilisées : " << lettresUtilisees << endl;
 }
 
-void IHMPendu::afficherResume(unsigned int       echecs,
-                              const unsigned int nombreEssaisMax,
-                              string             motADeviner)
+void IHMPendu::afficherResume(unsigned int echecs,
+                              string       motADeviner,
+                              bool         victoire)
 {
-    if(aGagne)
+    if(victoire)
     {
         cout << "Bravo ! Vous avez trouvé le mot en " << echecs << " tentatives"
              << endl;

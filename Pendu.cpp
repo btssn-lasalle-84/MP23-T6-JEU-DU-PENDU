@@ -11,7 +11,7 @@ using namespace std;
 Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "hello", "world", "couscous", "scooter" },
     nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), echecs(0), motADeviner(""),
-    motMasque("")
+    motMasque(""), victoire(false)
 {
     srand(time(NULL));
 }
@@ -54,6 +54,16 @@ void Pendu::remplacerLettre(char lettre)
     }
 }
 
+bool Pendu::estFinie() const
+{
+    return (echecs >= nombreEssaisMax || motADeviner == motMasque);
+}
+
+bool Pendu::aGagne(string motADeviner, string motMasque) const
+{
+    return (motADeviner == motMasque);
+}
+
 void Pendu::jouer()
 {
     monIHM->afficherRegles();
@@ -71,16 +81,6 @@ void Pendu::jouer()
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
         monIHM->afficherPendu(echecs);
     } while(!estFinie());
-
-    monIHM->afficherResume(echecs, nombreEssaisMax, motADeviner);
-}
-
-bool Pendu::estFinie() const
-{
-    return (echecs >= nombreEssaisMax || motADeviner == motMasque);
-}
-
-bool Pendu::aGagne() const
-{
-    return (motADeviner == motMasque);
+    victoire = aGagne(motADeviner, motMasque);
+    monIHM->afficherResume(echecs, motADeviner, victoire);
 }
