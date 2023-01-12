@@ -19,27 +19,19 @@ void IHMPendu::afficherRegles()
 
 void IHMPendu::afficherPendu(unsigned int echecs)
 {
-    if(echecs >= 1)
-    {
-        cout << " O";
-    }
-    if(echecs >= 2)
-    {
-        cout << "\n |";
-    }
-    if(echecs >= 3)
-    {
-        cout << "\n/|\\";
-    }
-    if(echecs >= 4)
-    {
-        cout << "\n |";
-    }
-    if(echecs >= 5)
-    {
-        cout << "\n/ \\";
-    }
-    cout << endl;
+    if(echecs >= NB_ESSAIS_MAX_DEFAUT)
+        echecs = NB_ESSAIS_MAX_DEFAUT - 1;
+    string dessin_pendu[NB_ESSAIS_MAX_DEFAUT] = {
+        "  ____\n |    |\n |\n |\n |\n |\n |",
+        "  ____\n |    |\n |    O\n |\n |\n |\n |",
+        "  ____\n |    |\n |    O\n |   /|\n |\n |\n |",
+        "  ____\n |    |\n |    O\n |   /|\\\n |\n |\n |",
+        "  ____\n |    |\n |    O\n |   /|\\\n |   /\n |\n |",
+        "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |\n |",
+        "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |   '\n |",
+        "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |    ---\n |"
+    };
+    cout << dessin_pendu[echecs] << std::endl;
 }
 
 void IHMPendu::afficherMot(string motMasque)
@@ -53,6 +45,7 @@ void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
 {
     cout << "Nombre d'essais restant : " << nombreEssaisMax - echecs << endl;
     cout << "Lettres déjà utilisées : " << lettresUtilisees << endl;
+    afficherPendu(echecs);
 }
 
 void IHMPendu::afficherResume(unsigned int echecs,
