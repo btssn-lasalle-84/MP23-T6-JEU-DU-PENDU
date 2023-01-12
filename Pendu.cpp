@@ -40,6 +40,7 @@ void Pendu::masquerMot()
               << "motMasque = " << motMasque << std::endl;
 #endif
 }
+
 void Pendu::verifierLettre()
 {
     char lettre = monIHM->entrerUneLettre();
