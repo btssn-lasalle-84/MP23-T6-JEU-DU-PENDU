@@ -58,6 +58,7 @@ void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
 void IHMPendu::afficherResume()
 {
 }
+
 string IHMPendu::saisirNomUtilisateur()
 {
     string nom;
@@ -65,6 +66,7 @@ string IHMPendu::saisirNomUtilisateur()
     cin >> nom;
     return nom;
 }
+
 char IHMPendu::entrerUneLettre()
 {
     // vérifier si c'est une lettre "valide" (c)
@@ -80,6 +82,7 @@ void IHMPendu::afficherErreurLettre()
             "l'alphabet (sans accent et insensible à la casse)."
          << endl;
 }
+
 void IHMPendu::afficherErreurLettreDejaUtilisee()
 {
     cout << "Vous avez déja entrée cette lettre" << endl;
