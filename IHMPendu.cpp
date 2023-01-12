@@ -55,14 +55,15 @@ void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
     cout << "Lettres déjà utilisées : " << lettresUtilisees << endl;
 }
 
-void IHMPendu::afficherResume(unsigned int echecs,
-                              string       motADeviner,
-                              bool         victoire)
+void IHMPendu::afficherResume(unsigned int       echecs,
+                              string             motADeviner,
+                              bool               victoire,
+                              const unsigned int nombreEssaisMax)
 {
     if(victoire)
     {
-        cout << "Bravo ! Vous avez trouvé le mot en " << echecs << " tentatives"
-             << endl;
+        cout << "Bravo ! Vous avez trouvé le mot avec "
+             << nombreEssaisMax - echecs << " tentatives restantes" << endl;
     }
     else
     {
@@ -79,10 +80,9 @@ string IHMPendu::saisirNomUtilisateur()
     return nom;
 }
 
-char IHMPendu::entrerUneLettre()
+char IHMPendu::entrerUneLettre(char lettre)
 {
-    // vérifier si c'est une lettre "valide" (c)
-    char lettre = '\0';
+    lettre = '\0';
     cout << "lettre : ";
     cin >> lettre;
     return lettre;
