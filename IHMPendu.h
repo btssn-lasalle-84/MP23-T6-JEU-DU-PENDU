@@ -14,7 +14,7 @@ class IHMPendu
     IHMPendu();
     ~IHMPendu();
 
-    void afficherRegles();
+    void afficherRegles(const unsigned int nombreEssaisMax);
     void afficherPendu(unsigned int echecs);
     void afficherInfos(const unsigned int nombreEssaisMax,
                        unsigned int       echecs,

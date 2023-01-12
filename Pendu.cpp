@@ -92,7 +92,7 @@ bool Pendu::aGagne(string motADeviner, string motMasque) const
 
 void Pendu::jouer()
 {
-    monIHM->afficherRegles();
+    monIHM->afficherRegles(nombreEssaisMax);
     monIHM->saisirNomUtilisateur();
 
     // une partie
@@ -106,7 +106,6 @@ void Pendu::jouer()
         remplacerLettre(lettre);
         monIHM->afficherMot(motMasque);
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
-        monIHM->afficherPendu(echecs);
     } while(!estFinie());
 
     victoire = aGagne(motADeviner, motMasque);
