@@ -108,7 +108,7 @@ void Pendu::jouer()
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
         monIHM->afficherPendu(echecs);
     } while(!estFinie());
-    
+
     victoire = aGagne(motADeviner, motMasque);
     monIHM->afficherResume(echecs, motADeviner, victoire);
 }
