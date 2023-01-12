@@ -29,6 +29,7 @@ class Pendu
     void choisirMot();
     void masquerMot();
     void jouer();
+    void verifierLettre();
     void remplacerLettre(char lettre);
     bool estFinie() const;
     bool aGagne(std::string motADeviner, std::string motMasque) const;

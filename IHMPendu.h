@@ -26,6 +26,8 @@ class IHMPendu
 
     std::string saisirNomUtilisateur();
     char        entrerUneLettre();
+    void        afficherErreurLettre();
+    void        afficherErreurLettreDejaUtilisee();
 };
 
 #endif

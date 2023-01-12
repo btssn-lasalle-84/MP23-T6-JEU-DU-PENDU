@@ -77,7 +77,6 @@ string IHMPendu::saisirNomUtilisateur()
     cin >> nom;
     return nom;
 }
-
 char IHMPendu::entrerUneLettre()
 {
     // vérifier si c'est une lettre "valide" (c)
@@ -85,4 +84,15 @@ char IHMPendu::entrerUneLettre()
     cout << "lettre : ";
     cin >> lettre;
     return lettre;
+}
+
+void IHMPendu::afficherErreurLettre()
+{
+    cout << "La lettre saisie n'est pas valide. Veuillez saisir une lettre de "
+            "l'alphabet (sans accent et insensible à la casse)."
+         << endl;
+}
+void IHMPendu::afficherErreurLettreDejaUtilisee()
+{
+    cout << "Vous avez déja entrée cette lettre" << endl;
 }
