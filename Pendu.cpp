@@ -36,27 +36,25 @@ void Pendu::masquerMot()
     }
 }
 
-void Pendu::verifierLettre(char lettre)
+bool Pendu::estUneLettreValide(char lettre)
 {
-    lettre = monIHM->entrerUneLettre(lettre);
     lettre = tolower(lettre);
     if(isalpha(lettre))
     {
         if(lettresUtilisees.find(lettre) != string::npos)
         {
             monIHM->afficherErreurLettreDejaUtilisee();
-            verifierLettre(lettre);
+            return false;
         }
         else
         {
-            lettresUtilisees += lettre;
-            remplacerLettre(lettre);
+            return true;
         }
     }
     else
     {
         monIHM->afficherErreurLettre();
-        verifierLettre(lettre);
+        return false;
     }
 }
 
@@ -95,11 +93,16 @@ void Pendu::jouer()
     choisirMot();
     masquerMot();
 
-    char lettre = '\0';
     do
     {
         monIHM->afficherMot(motMasque);
-        verifierLettre(lettre);
+        char lettre = '\0';
+        do
+        {
+            lettre = monIHM->entrerUneLettre(lettre);
+        } while(!estUneLettreValide(lettre));
+        lettresUtilisees += lettre;
+        remplacerLettre(lettre);
         monIHM->afficherPendu(echecs);
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
     } while(!estFinie());

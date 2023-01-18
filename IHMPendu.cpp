@@ -12,10 +12,14 @@ IHMPendu::~IHMPendu()
 {
 }
 
-void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax)
+void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax) const
 {
-    cout << "Bienvenue au jeu du pendu ! Voici les règles :" << endl << endl;
-    cout << "1. Un mot sera choisi au hasard pour que vous deviniez." << endl;
+    cout << "Bienvenue à la version " << VERSION
+         << " du jeu du pendu ! Voici les règles :" << endl
+         << endl;
+    cout
+      << "1. Un mot sera choisi au hasard pour que vous essayiez de le deviner."
+      << endl;
     cout << "2. Vous aurez un maximum de " << nombreEssaisMax
          << " tentatives pour deviner le mot correctement." << endl;
     cout << "3. Vous pouvez deviner une lettre à la fois. Si la lettre est "
@@ -33,7 +37,7 @@ void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax)
     cout << "Bonne chance ! Commençons le jeu." << endl << endl;
 }
 
-void IHMPendu::afficherPendu(unsigned int echecs)
+void IHMPendu::afficherPendu(unsigned int echecs) const
 {
     if(echecs >= NB_ESSAIS_MAX_DEFAUT)
         echecs = NB_ESSAIS_MAX_DEFAUT - 1;
@@ -50,28 +54,38 @@ void IHMPendu::afficherPendu(unsigned int echecs)
     cout << dessin_pendu[echecs] << std::endl;
 }
 
-void IHMPendu::afficherMot(string motMasque)
+void IHMPendu::afficherMot(string motMasque) const
 {
-    cout << "Mot à deviner : " << motMasque << endl;
+    cout << "Mot à deviner : ";
+    for(size_t i = 0; i < motMasque.size(); i++)
+    {
+        cout << motMasque[i];
+        cout << " ";
+    }
+    cout << endl;
 }
 
 void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
                              unsigned int       echecs,
-                             string             lettresUtilisees)
+                             string             lettresUtilisees) const
 {
-    cout << "Nombre d'essais restant : " << nombreEssaisMax - echecs << endl;
-    cout << "Lettres déjà utilisées : " << lettresUtilisees << endl;
+    if((nombreEssaisMax - echecs) > 0)
+    {
+        cout << "Nombre d'essais restants : " << nombreEssaisMax - echecs
+             << endl;
+        cout << "Lettres déjà utilisées : " << lettresUtilisees << endl;
+    }
 }
 
 void IHMPendu::afficherResume(unsigned int       echecs,
                               string             motADeviner,
                               bool               victoire,
-                              const unsigned int nombreEssaisMax)
+                              const unsigned int nombreEssaisMax) const
 {
     if(victoire)
     {
-        cout << "Bravo ! Vous avez trouvé le mot avec "
-             << nombreEssaisMax - echecs << " tentatives restantes" << endl;
+        cout << "Bravo " << nom << " ! Vous avez trouvé le mot en " << echecs
+             << " tentative" << ((echecs > 1) ? ("s") : ("")) << endl;
     }
     else
     {
@@ -82,7 +96,6 @@ void IHMPendu::afficherResume(unsigned int       echecs,
 
 string IHMPendu::saisirNomUtilisateur()
 {
-    string nom;
     cout << "Saisisez votre pseudo : ";
     cin >> nom;
     return nom;
@@ -90,20 +103,19 @@ string IHMPendu::saisirNomUtilisateur()
 
 char IHMPendu::entrerUneLettre(char lettre)
 {
-    lettre = '\0';
     cout << "lettre : ";
     cin >> lettre;
     return lettre;
 }
 
-void IHMPendu::afficherErreurLettre()
+void IHMPendu::afficherErreurLettre() const
 {
     cout << "La lettre saisie n'est pas valide. Veuillez saisir une lettre de "
             "l'alphabet (sans accent et insensible à la casse)."
          << endl;
 }
 
-void IHMPendu::afficherErreurLettreDejaUtilisee()
+void IHMPendu::afficherErreurLettreDejaUtilisee() const
 {
-    cout << "Vous avez déja entrée cette lettre" << endl;
+    cout << "Vous avez déja entré cette lettre" << endl;
 }
