@@ -33,6 +33,8 @@ class IHMPendu
     char        entrerUneLettre(char lettre);
     void        afficherErreurLettre() const;
     void        afficherErreurLettreDejaUtilisee() const;
+
+    unsigned int choisirTheme() const;
 };
 
 #endif

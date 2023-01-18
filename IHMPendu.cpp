@@ -118,3 +118,15 @@ void IHMPendu::afficherErreurLettreDejaUtilisee() const
 {
     cout << "Vous avez déja entré cette lettre" << endl;
 }
+
+unsigned int IHMPendu::choisirTheme() const
+{
+    unsigned int theme;
+    cout << "Choississez un thème:" << endl
+         << "1: Animaux" << endl
+         << "2: Capitales" << endl
+         << "3: Objets" << endl
+         << "4: Pays" << endl;
+    cin >> theme;
+    return theme;
+}

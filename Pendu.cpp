@@ -10,7 +10,7 @@ using namespace std;
 
 Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "hello", "world", "couscous", "scooter" },
-    nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), echecs(0), motADeviner(""),
+    nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), echecs(0), theme(0), motADeviner(""),
     motMasque(""), victoire(false)
 {
     srand(time(NULL));
@@ -21,9 +21,45 @@ Pendu::~Pendu()
     delete monIHM;
 }
 
+string Pendu::selectionnerFichier(unsigned int theme)
+{
+    switch(theme)
+    {
+        case 1:
+            return ("listeMots/animaux.txt");
+            break;
+        case 2:
+            return ("listeMots/capitales.txt");
+            break;
+        case 3:
+            return ("listeMots/objets.txt");
+            break;
+        case 4:
+            return ("listeMots/pays.txt");
+            break;
+        default:
+            return ("listeMots/pays.txt");
+            break;
+    }
+}
+
 void Pendu::choisirMot()
 {
-    motADeviner = mots[rand() % mots.size()];
+    unsigned int nombreMots;
+    ifstream     file(selectionnerFichier(theme));
+    for(nombreMots = 0; file >> motADeviner; nombreMots++)
+    {
+    }
+
+    srand(time(NULL));
+    int randomIndex = rand() % nombreMots;
+    file.clear();
+
+    file.seekg(0, ios::beg);
+    for(size_t j = 0; j < randomIndex; j++)
+    {
+        file >> motADeviner;
+    }
 }
 
 void Pendu::masquerMot()
@@ -89,6 +125,7 @@ void Pendu::jouer()
     monIHM->afficherRegles(nombreEssaisMax);
     monIHM->saisirNomUtilisateur();
 
+    unsigned int theme = monIHM->choisirTheme();
     choisirMot();
     masquerMot();
 
