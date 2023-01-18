@@ -1,5 +1,4 @@
 #include "IHMPendu.h"
-#include "Pendu.h"
 #include <iostream>
 
 using namespace std;
