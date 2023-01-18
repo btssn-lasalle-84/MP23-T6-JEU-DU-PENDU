@@ -89,7 +89,6 @@ void Pendu::jouer()
     monIHM->afficherRegles(nombreEssaisMax);
     monIHM->saisirNomUtilisateur();
 
-    // une partie
     choisirMot();
     masquerMot();
 

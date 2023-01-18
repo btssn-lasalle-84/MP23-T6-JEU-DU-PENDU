@@ -1,5 +1,4 @@
 #include "IHMPendu.h"
-#include "Pendu.h"
 #include <iostream>
 
 using namespace std;
@@ -39,17 +38,17 @@ void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax) const
 
 void IHMPendu::afficherPendu(unsigned int echecs) const
 {
-    if(echecs >= NB_ESSAIS_MAX_DEFAUT)
-        echecs = NB_ESSAIS_MAX_DEFAUT - 1;
-    string dessin_pendu[NB_ESSAIS_MAX_DEFAUT] = {
+    string dessin_pendu[NB_LIGNE_DESSIN_PENDU] = {
         "  ____\n |    |\n |\n |\n |\n |\n |",
         "  ____\n |    |\n |    O\n |\n |\n |\n |",
+        "  ____\n |    |\n |    O\n |   /\n |\n |\n |",
         "  ____\n |    |\n |    O\n |   /|\n |\n |\n |",
         "  ____\n |    |\n |    O\n |   /|\\\n |\n |\n |",
         "  ____\n |    |\n |    O\n |   /|\\\n |   /\n |\n |",
         "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |\n |",
-        "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |   '\n |",
-        "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |    ---\n |"
+        "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |   -\n |",
+        "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |   - -\n |",
+        "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |   ---\n |"
     };
     cout << dessin_pendu[echecs] << std::endl;
 }

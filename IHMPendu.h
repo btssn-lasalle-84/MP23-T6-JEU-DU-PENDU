@@ -4,7 +4,8 @@
 #include <string>
 #include "Pendu.h"
 
-#define VERSION 1
+#define VERSION               1.1
+#define NB_LIGNE_DESSIN_PENDU 10
 
 class IHMPendu
 {
