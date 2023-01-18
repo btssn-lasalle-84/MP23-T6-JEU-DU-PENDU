@@ -45,7 +45,6 @@ void Pendu::verifierLettre(char lettre)
         if(lettresUtilisees.find(lettre) != string::npos)
         {
             monIHM->afficherErreurLettreDejaUtilisee();
-            verifierLettre(lettre);
         }
         else
         {
@@ -56,7 +55,6 @@ void Pendu::verifierLettre(char lettre)
     else
     {
         monIHM->afficherErreurLettre();
-        verifierLettre(lettre);
     }
 }
 
@@ -91,7 +89,6 @@ void Pendu::jouer()
     monIHM->afficherRegles(nombreEssaisMax);
     monIHM->saisirNomUtilisateur();
 
-    // une partie
     choisirMot();
     masquerMot();
 
