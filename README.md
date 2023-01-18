@@ -16,9 +16,6 @@ Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’orig
 |Jouer une partie                    | X |   |
 |Afficher le déroulement d’une partie| X |   |
 
-## Liste des bogues
-
-- Méthode `IHMPendu::afficherPendu()` : la dernière ligne de l'affichage s'affiche deux fois
 
 ## Liste des choses à faire
 
@@ -34,5 +31,5 @@ Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’orig
 - Auteurs : 
   - Alexis Vaillen <<alexis.vaillen@gmail.com>>
   - Axel Lapierre  <<lapierre.axel30@gmail.com>>
-- Date : 13 janvier 2023
-- Version : 1.0
+- Date : 18 janvier 2023
+- Version : 1.1
