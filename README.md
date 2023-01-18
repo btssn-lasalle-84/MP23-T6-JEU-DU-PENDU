@@ -1,28 +1,38 @@
 [![C/C++ make](https://github.com/btssn-lasalle84/MP23-T6/actions/workflows/c-cpp.yml/badge.svg?branch=develop)](https://github.com/btssn-lasalle84/MP23-T6/actions/workflows/c-cpp.yml) [![C/C++ format](https://github.com/btssn-lasalle84/MP23-T6/actions/workflows/cppformat.yml/badge.svg?branch=develop)](https://github.com/btssn-lasalle84/MP23-T6/actions/workflows/cppformat.yml)
 
-
-
 # MP23-T6 Jeu du pendu
-
 
 ## Description
 
-Le pendu est un jeu consistant à trouver un mot en devinant quelles sont les lettres qui le composent. Le
-jeu se joue traditionnellement à deux, avec un papier et un crayon, selon un déroulement bien particulier.
-Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’origine du jeu du pendu est
-inconnue. En Grande-Bretagne, il semble avoir fait son apparition pendant l’époque victorienne, vers la
-fin du XIXe siècle.
+Le pendu est un jeu consistant à trouver un mot en devinant quelles sont les lettres qui le composent. Le jeu se joue traditionnellement à deux, avec un papier et un crayon, selon un déroulement bien particulier.
 
-## Recette 
-__________________________________________________
-|--------------Fonctionnalité------------|Oui|Non|
-|----------------------------------------|:-:|---|
-|---------Saisir le nom du joueur--------|:X:|---|
-|-------------jouer une partie-----------|:X:|---|
-|--afficher le déroulement d’une partie--|:X:|---|
+Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’origine du jeu du pendu est inconnue. En Grande-Bretagne, il semble avoir fait son apparition pendant l’époque victorienne, vers la fin du XIXe siècle.
 
-## Information
+## Recette
 
-auteurs Alexis Vaillen, Axel Lapierre
-date 2023
-version 1.0
+|Fonctionnalité                      |Oui|Non|
+|------------------------------------|:-:|:-:|
+|Saisir le nom du joueur             | X |   |
+|Jouer une partie                    | X |   |
+|Afficher le déroulement d’une partie| X |   |
+
+## Liste des bogues
+
+- Méthode `IHMPendu::afficherPendu()` : la dernière ligne de l'affichage s'affiche deux fois
+
+## Liste des choses à faire
+
+- [ ] `Pendu::jouer()` : permettre à l'utilisateur de refaire une partie
+- [ ] `Pendu::choisirMot()` : permettre à l'utilisateur de choisir le thème (les mots pour chaque thème sont conservés dans des fichiers)
+- [ ] `Joueur::choisirDifficulté()` : permettre à l'utilisateur de choisir une niveau de difficulté
+- [ ] `Joueur::chronometrer()` : chronométrer la partie
+- [ ] `Joueur::sauvegarderRecords()` : sauvegarder les meilleurs scores
+
+
+## Informations
+
+- Auteurs : 
+  - Alexis Vaillen <<alexis.vaillen@gmail.com>>
+  - Axel Lapierre  <<lapierre.axel30@gmail.com>>
+- Date : 13 janvier 2023
+- Version : 1.0
