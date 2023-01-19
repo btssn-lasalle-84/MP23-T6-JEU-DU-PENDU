@@ -4,6 +4,6 @@ int main()
 {
     Pendu pendu;
 
-    pendu.jouer();
+    pendu.menu();
     return 0;
 }

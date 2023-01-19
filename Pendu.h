@@ -7,6 +7,7 @@
 #define DEBUG_PENDU
 
 #define NB_ESSAIS_MAX_DEFAUT 8
+#define DEBUG_CHOIX
 
 class IHMPendu;
 
@@ -26,13 +27,15 @@ class Pendu
     Pendu();
     ~Pendu();
 
+    void menu();
+    void jouer();
     void choisirMot();
     void masquerMot();
-    void jouer();
     bool estUneLettreValide(char lettre);
     void remplacerLettre(char lettre);
     bool estFinie() const;
     bool aGagne(std::string motADeviner, std::string motMasque) const;
+    void initialisationPendu();
 };
 
 #endif
