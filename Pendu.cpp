@@ -2,6 +2,7 @@
 #include "IHMPendu.h"
 #include <iostream>
 #include <fstream>
+#include <limits>
 
 #define DEBUG_THEME
 
@@ -17,6 +18,56 @@ Pendu::Pendu() :
 Pendu::~Pendu()
 {
     delete monIHM;
+}
+void Pendu::menu()
+{
+    bool fermetureProgramme = false;
+    while(!fermetureProgramme)
+    {
+        monIHM->afficherInfoMenu();
+        switch(monIHM->entrerValeurChoixMenu())
+        {
+            case 0:
+                monIHM->afficherRegles(nombreEssaisMax);
+                break;
+            case 1:
+                jouer();
+                break;
+            case 2:
+                fermetureProgramme = true;
+                monIHM->afficherAuRevoir();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void Pendu::jouer()
+{
+    monIHM->saisirNomUtilisateur();
+
+    choisirMot();
+    masquerMot();
+
+    do
+    {
+        monIHM->afficherMot(motMasque);
+        char lettre = '\0';
+        do
+        {
+            lettre = monIHM->entrerUneLettre(lettre);
+        } while(!estUneLettreValide(lettre));
+        lettresUtilisees += lettre;
+        remplacerLettre(lettre);
+        monIHM->afficherPendu(echecs);
+        monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
+    } while(!estFinie());
+
+    victoire = aGagne(motADeviner, motMasque);
+    monIHM->afficherResume(echecs, motADeviner, victoire, nombreEssaisMax);
+
+    initialisationPendu();
 }
 
 string Pendu::selectionnerFichier(unsigned int theme)
@@ -99,6 +150,7 @@ void Pendu::remplacerLettre(char lettre)
                 motMasque[i] = lettre;
         }
     }
+
     else
     {
         echecs++;
@@ -115,29 +167,12 @@ bool Pendu::aGagne(string motADeviner, string motMasque) const
     return (motADeviner == motMasque);
 }
 
-void Pendu::jouer()
+void Pendu::reinitialiserPendu()
 {
-    monIHM->afficherRegles(nombreEssaisMax);
-    monIHM->saisirNomUtilisateur();
-
-    theme = monIHM->choisirTheme();
-    choisirMot(theme);
-    masquerMot();
-
-    do
-    {
-        monIHM->afficherMot(motMasque);
-        char lettre = '\0';
-        do
-        {
-            lettre = toupper(monIHM->entrerUneLettre(lettre));
-        } while(!estUneLettreValide(lettre));
-        lettresUtilisees += lettre;
-        remplacerLettre(lettre);
-        monIHM->afficherPendu(echecs);
-        monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
-    } while(!estFinie());
-
-    victoire = aGagne(motADeviner, motMasque);
-    monIHM->afficherResume(echecs, motADeviner, victoire, nombreEssaisMax);
+    echecs           = 0;
+    motADeviner      = "";
+    motMasque        = "";
+    lettresUtilisees = "";
+    victoire         = false;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // on vide tout
 }

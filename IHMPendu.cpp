@@ -14,9 +14,7 @@ IHMPendu::~IHMPendu()
 
 void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax) const
 {
-    cout << "Bienvenue à la version " << VERSION
-         << " du jeu du pendu ! Voici les règles :" << endl
-         << endl;
+    cout << "Voici les règles :" << endl << endl;
     cout
       << "1. Un mot sera choisi au hasard pour que vous essayiez de le deviner."
       << endl;
@@ -34,7 +32,7 @@ void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax) const
             "vous perdez le jeu."
          << endl
          << endl;
-    cout << "Bonne chance ! Commençons le jeu." << endl << endl;
+    cout << "Bonne chance !" << endl << endl;
 }
 
 void IHMPendu::afficherPendu(unsigned int echecs) const
@@ -51,7 +49,7 @@ void IHMPendu::afficherPendu(unsigned int echecs) const
         "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |   - -\n |",
         "  ____\n |    |\n |    O\n |   /|\\\n |   / \\\n |   ---\n |"
     };
-    cout << dessin_pendu[echecs] << std::endl;
+    cout << dessin_pendu[echecs] << endl;
 }
 
 void IHMPendu::afficherMot(string motMasque) const
@@ -85,7 +83,8 @@ void IHMPendu::afficherResume(unsigned int       echecs,
     if(victoire)
     {
         cout << "Bravo " << nom << " ! Vous avez trouvé le mot en " << echecs
-             << " tentative" << ((echecs > 1) ? ("s") : ("")) << endl;
+             << " tentative" << ((echecs > 1) ? ("s") : ("")) << endl
+             << endl;
     }
     else
     {
@@ -130,4 +129,26 @@ unsigned int IHMPendu::choisirTheme()
          << "4: Pays" << endl;
     cin >> choix;
     return choix;
+}
+
+void IHMPendu::afficherInfoMenu() const
+{
+    cout << "Bienvenue à la version " << VERSION << " du jeu du pendu !" << endl
+         << endl;
+
+    cout << "0. Afficher les règles" << endl;
+    cout << "1. Jouer au jeu" << endl;
+    cout << "2. Quitter" << endl;
+}
+unsigned int IHMPendu::entrerValeurChoixMenu()
+{
+    unsigned int choix;
+    cout << endl << "Entrez votre choix : ";
+    cin >> choix;
+    return choix;
+}
+
+void IHMPendu::afficherAuRevoir() const
+{
+    cout << endl << "Merci d'avoir joué " << endl;
 }

@@ -29,12 +29,14 @@ class IHMPendu
                         bool               victoire,
                         const unsigned int nombreEssaisMax) const;
 
-    std::string saisirNomUtilisateur();
-    char        entrerUneLettre(char lettre);
-    void        afficherErreurLettre() const;
-    void        afficherErreurLettreDejaUtilisee() const;
-
+    std::string  saisirNomUtilisateur();
+    char         entrerUneLettre(char lettre);
+    void         afficherErreurLettre() const;
+    void         afficherErreurLettreDejaUtilisee() const;
     unsigned int choisirTheme();
+    void         afficherInfoMenu() const;
+    unsigned int entrerValeurChoixMenu();
+    void         afficherAuRevoir() const;
 };
 
 #endif
