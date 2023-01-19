@@ -67,7 +67,7 @@ void Pendu::jouer()
     victoire = aGagne(motADeviner, motMasque);
     monIHM->afficherResume(echecs, motADeviner, victoire, nombreEssaisMax);
 
-    reinitialisaterPendu();
+    reinitialiserPendu();
 }
 
 string Pendu::selectionnerFichier(unsigned int theme)
