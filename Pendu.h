@@ -37,7 +37,7 @@ class Pendu
     void        remplacerLettre(char lettre);
     bool        estFinie() const;
     bool        aGagne(std::string motADeviner, std::string motMasque) const;
-    void        reinitialisaterPendu();
+    void        reinitialiserPendu();
 };
 
 #endif
