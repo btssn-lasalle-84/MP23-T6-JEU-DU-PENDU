@@ -18,6 +18,7 @@ class Pendu
     std::vector<std::string> mots;
     unsigned int             nombreEssaisMax;
     unsigned int             echecs;
+    unsigned int             theme;
     std::string              motADeviner;
     std::string              motMasque;
     std::string              lettresUtilisees;
@@ -27,15 +28,16 @@ class Pendu
     Pendu();
     ~Pendu();
 
-    void menu();
-    void jouer();
-    void choisirMot();
-    void masquerMot();
-    bool estUneLettreValide(char lettre);
-    void remplacerLettre(char lettre);
-    bool estFinie() const;
-    bool aGagne(std::string motADeviner, std::string motMasque) const;
-    void initialisationPendu();
+    std::string selectionnerFichier(unsigned int theme);
+    void        choisirMot(unsigned int theme);
+    void        masquerMot();
+    void        menu();
+    void        jouer();
+    bool        estUneLettreValide(char lettre);
+    void        remplacerLettre(char lettre);
+    bool        estFinie() const;
+    bool        aGagne(std::string motADeviner, std::string motMasque) const;
+    void        reinitialiserPendu();
 };
 
 #endif

@@ -1,18 +1,16 @@
 #include "Pendu.h"
 #include "IHMPendu.h"
+#include <iostream>
 #include <fstream>
 #include <limits>
 
-#ifdef DEBUG_PENDU
-#include <iostream>
-#endif
+#define DEBUG_THEME
 
 using namespace std;
 
 Pendu::Pendu() :
-    monIHM(new IHMPendu), mots{ "hello", "world", "couscous", "scooter" },
-    nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT), echecs(0), motADeviner(""),
-    motMasque(""), victoire(false)
+    monIHM(new IHMPendu), mots{ "" }, nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT),
+    echecs(0), theme(0), motADeviner(""), motMasque(""), victoire(false)
 {
     srand(time(NULL));
 }
@@ -49,7 +47,7 @@ void Pendu::jouer()
 {
     monIHM->saisirNomUtilisateur();
 
-    choisirMot();
+    choisirMot(theme);
     masquerMot();
 
     do
@@ -69,11 +67,45 @@ void Pendu::jouer()
     victoire = aGagne(motADeviner, motMasque);
     monIHM->afficherResume(echecs, motADeviner, victoire, nombreEssaisMax);
 
-    initialisationPendu();
+    reinitialiserPendu();
 }
 
-void Pendu::choisirMot()
+string Pendu::selectionnerFichier(unsigned int theme)
 {
+    switch(theme)
+    {
+        case 1:
+            return ("listeMots/animaux");
+            break;
+        case 2:
+            return ("listeMots/capitales");
+            break;
+        case 3:
+            return ("listeMots/objets");
+            break;
+        case 4:
+            return ("listeMots/pays");
+            break;
+        default:
+            return ("listeMots/pays");
+            break;
+    }
+}
+
+void Pendu::choisirMot(unsigned int theme)
+{
+    ifstream listeMots(selectionnerFichier(theme));
+#ifdef DEBUG_THEME
+    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__
+              << "] ouvert = " << listeMots.is_open() << std::endl;
+#endif
+    // TODO : vérifier que le fichier est ouvert
+
+    string mot;
+    while(getline(listeMots, mot))
+    {
+        mots.push_back(mot);
+    }
     motADeviner = mots[rand() % mots.size()];
 }
 
@@ -89,7 +121,6 @@ void Pendu::masquerMot()
 
 bool Pendu::estUneLettreValide(char lettre)
 {
-    lettre = tolower(lettre);
     if(isalpha(lettre))
     {
         if(lettresUtilisees.find(lettre) != string::npos)
@@ -136,7 +167,7 @@ bool Pendu::aGagne(string motADeviner, string motMasque) const
     return (motADeviner == motMasque);
 }
 
-void Pendu::initialisationPendu()
+void Pendu::reinitialiserPendu()
 {
     echecs           = 0;
     motADeviner      = "";

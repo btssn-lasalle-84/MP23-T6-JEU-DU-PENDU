@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 IHMPendu::IHMPendu() : lettresUtilisees(""), lettresDevinees("")
 {
 }
@@ -116,6 +117,18 @@ void IHMPendu::afficherErreurLettre() const
 void IHMPendu::afficherErreurLettreDejaUtilisee() const
 {
     cout << "Vous avez déja entré cette lettre" << endl;
+}
+
+unsigned int IHMPendu::choisirTheme()
+{
+    unsigned int choix;
+    cout << "Choississez un thème:" << endl
+         << "1: Animaux" << endl
+         << "2: Capitales" << endl
+         << "3: Objets" << endl
+         << "4: Pays" << endl;
+    cin >> choix;
+    return choix;
 }
 
 void IHMPendu::afficherInfoMenu() const
