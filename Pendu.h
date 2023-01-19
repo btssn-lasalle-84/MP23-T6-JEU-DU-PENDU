@@ -28,7 +28,7 @@ class Pendu
     ~Pendu();
 
     std::string selectionnerFichier(unsigned int theme);
-    void        choisirMot();
+    void        choisirMot(unsigned int theme);
     void        masquerMot();
     void        jouer();
     bool        estUneLettreValide(char lettre);

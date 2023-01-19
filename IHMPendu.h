@@ -34,7 +34,7 @@ class IHMPendu
     void        afficherErreurLettre() const;
     void        afficherErreurLettreDejaUtilisee() const;
 
-    unsigned int choisirTheme() const;
+    unsigned int choisirTheme();
 };
 
 #endif
