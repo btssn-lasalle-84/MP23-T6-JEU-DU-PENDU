@@ -25,19 +25,20 @@ void Pendu::menu()
     while(!fermetureProgramme)
     {
         monIHM->afficherInfoMenu();
-        int choix = monIHM->entrerValeurChoixMenu();
+        int choix = monIHM->entrerValeurChoix();
         switch(choix)
         {
-            case 0:
+            case 1:
                 monIHM->afficherRegles(nombreEssaisMax);
                 break;
-            case 1:
+            case 2:
                 jouer();
                 break;
-            case 2:
+            case 3:
                 fermetureProgramme = true;
                 monIHM->afficherAuRevoir();
                 break;
+
             default:
                 break;
         }

@@ -35,7 +35,7 @@ class IHMPendu
     void        afficherErreurLettreDejaUtilisee() const;
     int         choisirTheme();
     void        afficherInfoMenu() const;
-    int         entrerValeurChoixMenu();
+    int         entrerValeurChoix();
     void        afficherAuRevoir() const;
     void        afficherErreurChoix() const;
     int         verifierChoix();

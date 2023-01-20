@@ -121,38 +121,13 @@ void IHMPendu::afficherErreurLettreDejaUtilisee() const
 
 int IHMPendu::choisirTheme()
 {
-    int choix = 0;
-    while(true)
-    {
-        cout << endl
-             << "Choississez un thème:" << endl
-             << "1: Animaux" << endl
-             << "2: Capitales" << endl
-             << "3: Objets" << endl
-             << "4: Pays" << endl;
-        cin >> choix;
-        if(cin.fail())
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Choix invalide. S'il vous plaît entrer un entiers : "
-                 << endl;
-            continue;
-        }
-        break;
-        cin >> choix;
-        if(cin.fail())
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Choix invalide. S'il vous plaît entrer un entiers : "
-                 << endl;
-            continue;
-        }
-        break;
-    }
-
-    return choix;
+    cout << endl
+         << "Choississez un thème:" << endl
+         << "1: Animaux" << endl
+         << "2: Capitales" << endl
+         << "3: Objets" << endl
+         << "4: Pays" << endl;
+    entrerValeurChoix();
 }
 
 void IHMPendu::afficherInfoMenu() const
@@ -160,11 +135,11 @@ void IHMPendu::afficherInfoMenu() const
     cout << "Bienvenue à la version " << VERSION << " du jeu du pendu !" << endl
          << endl;
 
-    cout << "0. Afficher les règles" << endl;
-    cout << "1. Jouer au jeu" << endl;
-    cout << "2. Quitter" << endl;
+    cout << "1. Afficher les règles" << endl;
+    cout << "2. Jouer au jeu" << endl;
+    cout << "3. Quitter" << endl;
 }
-int IHMPendu::entrerValeurChoixMenu()
+int IHMPendu::entrerValeurChoix()
 {
     int choix = 0;
     while(true)
