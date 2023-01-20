@@ -25,18 +25,20 @@ void Pendu::menu()
     while(!fermetureProgramme)
     {
         monIHM->afficherInfoMenu();
-        switch(monIHM->entrerValeurChoixMenu())
+        int choix = monIHM->entrerValeurChoix();
+        switch(choix)
         {
-            case 0:
+            case 1:
                 monIHM->afficherRegles(nombreEssaisMax);
                 break;
-            case 1:
+            case 2:
                 jouer();
                 break;
-            case 2:
+            case 3:
                 fermetureProgramme = true;
                 monIHM->afficherAuRevoir();
                 break;
+
             default:
                 break;
         }
@@ -46,7 +48,6 @@ void Pendu::menu()
 void Pendu::jouer()
 {
     monIHM->saisirNomUtilisateur();
-
     choisirMot(theme);
     masquerMot();
 
@@ -72,7 +73,7 @@ void Pendu::jouer()
 
 string Pendu::selectionnerFichier(unsigned int theme)
 {
-    switch(theme)
+    switch(monIHM->choisirTheme())
     {
         case 1:
             return ("listeMots/animaux");
