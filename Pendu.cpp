@@ -73,7 +73,7 @@ void Pendu::jouer()
 
 string Pendu::selectionnerFichier(unsigned int theme)
 {
-    switch(monIHM->choisirTheme())
+    switch (monIHM->choisirTheme())
     {
     case 1:
         return ("listeMots/dictionnaire_francais.txt");
@@ -91,10 +91,11 @@ string Pendu::selectionnerFichier(unsigned int theme)
         return ("listeMots/animaux");
         break;
     default:
-        return ("listeMots/pays");
+        return ("listeMots/dictionnaire_francais.txt");
         break;
     }
 }
+
 
 void Pendu::choisirMot(unsigned int theme)
 {
