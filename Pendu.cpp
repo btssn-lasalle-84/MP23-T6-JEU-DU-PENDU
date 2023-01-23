@@ -19,7 +19,6 @@ Pendu::~Pendu()
 {
     delete monIHM;
 }
-
 void Pendu::menu()
 {
     bool fermetureProgramme = false;
@@ -29,19 +28,19 @@ void Pendu::menu()
         int choix = monIHM->entrerValeurChoix();
         switch(choix)
         {
-        case 1:
-            monIHM->afficherRegles(nombreEssaisMax);
-            break;
-        case 2:
-            jouer();
-            break;
-        case 3:
-            fermetureProgramme = true;
-            monIHM->afficherAuRevoir();
-            break;
+            case 1:
+                monIHM->afficherRegles(nombreEssaisMax);
+                break;
+            case 2:
+                jouer();
+                break;
+            case 3:
+                fermetureProgramme = true;
+                monIHM->afficherAuRevoir();
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
     }
 }
@@ -92,7 +91,7 @@ string Pendu::selectionnerFichier(unsigned int theme)
         return ("listeMots/animaux");
         break;
     default:
-        return ("listeMots/pays");
+        return ("listeMots/dictionnaire_francais.txt");
         break;
     }
 }
@@ -100,10 +99,6 @@ string Pendu::selectionnerFichier(unsigned int theme)
 void Pendu::choisirMot(unsigned int theme)
 {
     ifstream listeMots(selectionnerFichier(theme));
-#ifdef DEBUG_THEME
-    std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__
-              << "] ouvert = " << listeMots.is_open() << std::endl;
-#endif
     if (listeMots.is_open())
     {
         string mot;
@@ -119,64 +114,71 @@ void Pendu::choisirMot(unsigned int theme)
     }
 }
 
+    
 void Pendu::masquerMot()
 {
     motMasque        = motADeviner;
     size_t tailleMot = motADeviner.size();
-    for (size_t i = 0; i < tailleMot; i++)
+    for(size_t i = 1; i < tailleMot - 1; i++)
     {
-        motMasque[i] = '*';
+        motMasque[i] = '_';
     }
 }
 
 bool Pendu::estUneLettreValide(char lettre)
 {
-    if (!isalpha(lettre))
+    if(isalpha(lettre))
     {
-        monIHM->afficherErreurSaisieLettre();
+        if(lettresUtilisees.find(lettre) != string::npos)
+        {
+            monIHM->afficherErreurLettreDejaUtilisee();
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    else
+    {
+        monIHM->afficherErreurLettre();
         return false;
     }
-    if (lettresUtilisees.find(lettre) != string::npos)
-    {
-        monIHM->afficherLettreDejaSaisie(lettre);
-        return false;
-    }
-    return true;
 }
 
 void Pendu::remplacerLettre(char lettre)
 {
-    size_t tailleMot = motADeviner.size();
-    bool   lettreTrouvee = false;
-    for (size_t i = 0; i < tailleMot; i++)
+    if(motADeviner.find(lettre) != string::npos)
     {
-        if (motADeviner[i] == lettre)
+        for(size_t i = 0; i < motADeviner.size(); i++)
         {
-            motMasque[i] = lettre;
-            lettreTrouvee = true;
+            if(motADeviner[i] == lettre)
+                motMasque[i] = lettre;
         }
     }
-    if (!lettreTrouvee)
+
+    else
     {
         echecs++;
     }
 }
 
-bool Pendu::estFinie()
+bool Pendu::estFinie() const
 {
-    return (echecs >= nombreEssaisMax) || (motMasque == motADeviner);
+    return (echecs >= nombreEssaisMax || motADeviner == motMasque);
 }
 
-bool Pendu::aGagne(string motADeviner, string motMasque)
+bool Pendu::aGagne(string motADeviner, string motMasque) const
 {
-    return motADeviner == motMasque;
+    return (motADeviner == motMasque);
 }
 
 void Pendu::reinitialiserPendu()
 {
-    echecs        = 0;
-    motADeviner   = "";
-    motMasque     = "";
+    echecs           = 0;
+    motADeviner      = "";
+    motMasque        = "";
     lettresUtilisees = "";
-    victoire      = false;
+    victoire         = false;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // on vide tout
 }
