@@ -76,26 +76,19 @@ string Pendu::selectionnerFichier(unsigned int theme)
     switch (monIHM->choisirTheme())
     {
     case 1:
-        return ("listeMots/dictionnaire_francais.txt");
-        break;
+        return "listeMots/dictionnaire_francais.txt";
     case 2:
-        return ("listeMots/capitales");
-        break;
+        return "listeMots/capitales";
     case 3:
-        return ("listeMots/objets");
-        break;
+        return "listeMots/objets";
     case 4:
-        return ("listeMots/pays");
-        break;
+        return "listeMots/pays";
     case 5:
-        return ("listeMots/animaux");
-        break;
+        return "listeMots/animaux";
     default:
-        return ("listeMots/dictionnaire_francais.txt");
-        break;
+        return "listeMots/dictionnaire_francais.txt";
     }
 }
-
 
 void Pendu::choisirMot(unsigned int theme)
 {
