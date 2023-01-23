@@ -103,7 +103,7 @@ void Pendu::choisirMot(unsigned int theme)
     std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__
               << "] ouvert = " << listeMots.is_open() << std::endl;
 #endif
-  if(listeMots.is_open())
+    if(listeMots.is_open())
 {
     
     string mot;
