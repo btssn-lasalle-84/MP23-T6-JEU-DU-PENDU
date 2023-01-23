@@ -89,7 +89,7 @@ string Pendu::selectionnerFichier(unsigned int theme)
             break;
         case 5:
            return ("listeMots/animaux");
-            break;
+           break;
         default:
             return ("listeMots/pays");
             break;
