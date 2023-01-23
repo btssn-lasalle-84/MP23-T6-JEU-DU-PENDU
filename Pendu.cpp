@@ -104,21 +104,20 @@ void Pendu::choisirMot(unsigned int theme)
               << "] ouvert = " << listeMots.is_open() << std::endl;
 #endif
     if(listeMots.is_open())
-{
-    
-    string mot;
-    while(getline(listeMots, mot))
     {
-        mots.push_back(mot);
+        string mot;
+        while(getline(listeMots, mot))
+        {
+            mots.push_back(mot);
+        }
+        motADeviner = mots[rand() % mots.size()];
     }
-    motADeviner = mots[rand() % mots.size()];
+    else
+    {
+        cout << "Impossible d'ouvrir le fichier de mots" << std::endl;
+    }
 }
-else
-{
-    
-    cout << "Impossible d'ouvrir le fichier de mots" << std::endl;
-}
-}
+
 void Pendu::masquerMot()
 {
     motMasque        = motADeviner;
