@@ -123,10 +123,11 @@ int IHMPendu::choisirTheme()
 {
     cout << endl
          << "Choississez un thème:" << endl
-         << "1: Animaux" << endl
+         << "1: General " << endl
          << "2: Capitales" << endl
          << "3: Objets" << endl
-         << "4: Pays" << endl;
+         << "4: Pays" << endl
+         << "5: Animaux";
     entrerValeurChoix();
 }
 
@@ -150,7 +151,7 @@ int IHMPendu::entrerValeurChoix()
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Choix invalide. S'il vous plaît entrer un entiers : "
+            cerr << "Choix invalide. S'il vous plaît entrer un entiers : "
                  << endl;
             continue;
         }
@@ -165,5 +166,10 @@ void IHMPendu::afficherAuRevoir() const
 }
 void IHMPendu::afficherErreurChoix() const
 {
-    cout << "Erreur:veuillez saisir un entier" << endl;
+    cerr << "Erreur:veuillez saisir un entier" << endl;
+}
+
+void IHMPendu::afficherErreurFichierOuvert()
+{
+    cerr << "Impossible d'ouvrir le fichier de mots" << endl;
 }
