@@ -73,20 +73,26 @@ void Pendu::jouer()
 
 string Pendu::selectionnerFichier(unsigned int theme)
 {
-    switch (monIHM->choisirTheme())
+    switch(monIHM->choisirTheme())
     {
-    case 1:
-        return "listeMots/dictionnaire_francais.txt";
-    case 2:
-        return "listeMots/capitales";
-    case 3:
-        return "listeMots/objets";
-    case 4:
-        return "listeMots/pays";
-    case 5:
-        return "listeMots/animaux";
-    default:
-        return "listeMots/dictionnaire_francais.txt";
+        case 1:
+            return ("listeMots/dictionnaire_francais.txt");
+            break;
+        case 2:
+            return ("listeMots/capitales");
+            break;
+        case 3:
+            return ("listeMots/objets");
+            break;
+        case 4:
+            return ("listeMots/pays");
+            break;
+        case 5:
+            return ("listeMots/animaux");
+            break;
+        default:
+            return ("listeMots/dictionnaire_francais.txt");
+            break;
     }
 }
 
@@ -97,21 +103,19 @@ void Pendu::choisirMot(unsigned int theme)
     std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__
               << "] ouvert = " << listeMots.is_open() << std::endl;
 #endif
-  if(listeMots.is_open())
-{
-    
-    string mot;
-    while(getline(listeMots, mot))
+    if(listeMots.is_open())
     {
-        mots.push_back(mot);
+        string mot;
+        while(getline(listeMots, mot))
+        {
+            mots.push_back(mot);
+        }
+        motADeviner = mots[rand() % mots.size()];
     }
-    motADeviner = mots[rand() % mots.size()];
-}
-else
-{
-    
-    cout << "Impossible d'ouvrir le fichier de mots" << std::endl;
-}
+    else
+    {
+        monIHM->afficherErreurFichierOuvert();
+    }
 }
 void Pendu::masquerMot()
 {
