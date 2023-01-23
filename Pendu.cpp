@@ -96,6 +96,7 @@ string Pendu::selectionnerFichier(unsigned int theme)
     }
 }
 
+
 void Pendu::choisirMot(unsigned int theme)
 {
     ifstream listeMots(selectionnerFichier(theme));
