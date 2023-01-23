@@ -76,7 +76,7 @@ string Pendu::selectionnerFichier(unsigned int theme)
     switch(monIHM->choisirTheme())
     {
         case 1:
-            return ("listeMots/animaux");
+            return ("listeMots/dictionnaire_francais.txt");
             break;
         case 2:
             return ("listeMots/capitales");
@@ -87,6 +87,9 @@ string Pendu::selectionnerFichier(unsigned int theme)
         case 4:
             return ("listeMots/pays");
             break;
+        case 5:
+           return ("listeMots/animaux");
+           break;
         default:
             return ("listeMots/pays");
             break;
@@ -100,8 +103,9 @@ void Pendu::choisirMot(unsigned int theme)
     std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__
               << "] ouvert = " << listeMots.is_open() << std::endl;
 #endif
-    // TODO : vérifier que le fichier est ouvert
-
+  if(listeMots.is_open())
+{
+    
     string mot;
     while(getline(listeMots, mot))
     {
@@ -109,7 +113,12 @@ void Pendu::choisirMot(unsigned int theme)
     }
     motADeviner = mots[rand() % mots.size()];
 }
-
+else
+{
+    
+    cout << "Impossible d'ouvrir le fichier de mots" << std::endl;
+}
+}
 void Pendu::masquerMot()
 {
     motMasque        = motADeviner;
