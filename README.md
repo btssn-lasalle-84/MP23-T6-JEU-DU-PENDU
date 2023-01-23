@@ -15,12 +15,13 @@ Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’orig
 |Saisir le nom du joueur             | X |   |
 |Jouer une partie                    | X |   |
 |Afficher le déroulement d’une partie| X |   |
+|Afficher le menu                    | x |   |
+|Choisir Theme                       | x |   |
+
 
 
 ## Liste des choses à faire
 
-- [ ] `Pendu::jouer()` : permettre à l'utilisateur de refaire une partie
-- [ ] `Pendu::choisirMot()` : permettre à l'utilisateur de choisir le thème (les mots pour chaque thème sont conservés dans des fichiers)
 - [ ] `Joueur::choisirDifficulté()` : permettre à l'utilisateur de choisir une niveau de difficulté
 - [ ] `Joueur::chronometrer()` : chronométrer la partie
 - [ ] `Joueur::sauvegarderRecords()` : sauvegarder les meilleurs scores
@@ -31,5 +32,5 @@ Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’orig
 - Auteurs : 
   - Alexis Vaillen <<alexis.vaillen@gmail.com>>
   - Axel Lapierre  <<lapierre.axel30@gmail.com>>
-- Date : 18 janvier 2023
-- Version : 1.1
+- Date : 23 janvier 2023
+- Version : 2.0
