@@ -4,7 +4,7 @@
 #include <string>
 #include "Pendu.h"
 
-#define VERSION               1.1
+#define VERSION               2
 #define NB_LIGNE_DESSIN_PENDU 10
 
 class IHMPendu
@@ -33,6 +33,12 @@ class IHMPendu
     char        entrerUneLettre(char lettre);
     void        afficherErreurLettre() const;
     void        afficherErreurLettreDejaUtilisee() const;
+    int         choisirTheme();
+    void        afficherInfoMenu() const;
+    int         entrerValeurChoix();
+    void        afficherAuRevoir() const;
+    void        afficherErreurChoix() const;
+    void        afficherErreurFichierOuvert();
 };
 
 #endif

@@ -7,6 +7,7 @@
 #define DEBUG_PENDU
 
 #define NB_ESSAIS_MAX_DEFAUT 8
+#define DEBUG_CHOIX
 
 class IHMPendu;
 
@@ -17,6 +18,7 @@ class Pendu
     std::vector<std::string> mots;
     unsigned int             nombreEssaisMax;
     unsigned int             echecs;
+    unsigned int             theme;
     std::string              motADeviner;
     std::string              motMasque;
     std::string              lettresUtilisees;
@@ -26,13 +28,16 @@ class Pendu
     Pendu();
     ~Pendu();
 
-    void choisirMot();
-    void masquerMot();
-    void jouer();
-    bool estUneLettreValide(char lettre);
-    void remplacerLettre(char lettre);
-    bool estFinie() const;
-    bool aGagne(std::string motADeviner, std::string motMasque) const;
+    std::string selectionnerFichier(unsigned int theme);
+    void        choisirMot(unsigned int theme);
+    void        masquerMot();
+    void        menu();
+    void        jouer();
+    bool        estUneLettreValide(char lettre);
+    void        remplacerLettre(char lettre);
+    bool        estFinie() const;
+    bool        aGagne(std::string motADeviner, std::string motMasque) const;
+    void        reinitialiserPendu();
 };
 
 #endif
