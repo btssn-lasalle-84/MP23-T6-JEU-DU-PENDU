@@ -100,6 +100,17 @@ string IHMPendu::saisirNomUtilisateur()
     return nom;
 }
 
+unsigned int IHMPendu::choisirDifficulte()
+{
+    cout << endl
+         << "Choississez un niveau de difficulté:" << endl
+         << "1: Nombre de caractères aléatoire" << endl
+         << "2: Facile (entre 3 et 4 caractères)" << endl
+         << "3: Moyen (entre 5 et 6 caractères)" << endl
+         << "4: Difficile (plus de 7 caractères)";
+    return (entrerValeurChoix());
+}
+
 char IHMPendu::entrerUneLettre(char lettre)
 {
     cout << "lettre : ";
@@ -119,7 +130,7 @@ void IHMPendu::afficherErreurLettreDejaUtilisee() const
     cout << "Vous avez déja entré cette lettre" << endl;
 }
 
-int IHMPendu::choisirTheme()
+unsigned int IHMPendu::choisirTheme()
 {
     cout << endl
          << "Choississez un thème:" << endl
@@ -128,7 +139,7 @@ int IHMPendu::choisirTheme()
          << "3: Objets" << endl
          << "4: Pays" << endl
          << "5: Animaux";
-    entrerValeurChoix();
+    return (entrerValeurChoix());
 }
 
 void IHMPendu::afficherInfoMenu() const
@@ -140,9 +151,9 @@ void IHMPendu::afficherInfoMenu() const
     cout << "2. Jouer au jeu" << endl;
     cout << "3. Quitter" << endl;
 }
-int IHMPendu::entrerValeurChoix()
+unsigned int IHMPendu::entrerValeurChoix()
 {
-    int choix = 0;
+    unsigned int choix = 0;
     while(true)
     {
         cout << endl << "Entrez votre choix : ";
@@ -151,8 +162,7 @@ int IHMPendu::entrerValeurChoix()
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cerr << "Choix invalide. S'il vous plaît entrer un entiers : "
-                 << endl;
+            afficherErreurChoix();
             continue;
         }
         break;
@@ -166,10 +176,10 @@ void IHMPendu::afficherAuRevoir() const
 }
 void IHMPendu::afficherErreurChoix() const
 {
-    cerr << "Erreur:veuillez saisir un entier" << endl;
+    cerr << "Erreur: veuillez saisir un entier" << endl;
 }
 
-void IHMPendu::afficherErreurFichierOuvert()
+void IHMPendu::afficherErreurOuvertureFichier() const
 {
-    cerr << "Impossible d'ouvrir le fichier de mots" << endl;
+    cerr << "Impossible d'ouvrir le fichier" << endl;
 }

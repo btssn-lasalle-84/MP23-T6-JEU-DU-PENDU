@@ -10,7 +10,9 @@ using namespace std;
 
 Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "" }, nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT),
-    echecs(0), theme(0), motADeviner(""), motMasque(""), victoire(false)
+    nombreCaracteresMaxFacile(DIFFICULTE_FACILE),
+    nombreCaracteresMaxMoyen(DIFFICULTE_MOYEN), echecs(0), theme(0),
+    motADeviner(""), motMasque(""), victoire(false)
 {
     srand(time(NULL));
 }
@@ -48,7 +50,8 @@ void Pendu::menu()
 void Pendu::jouer()
 {
     monIHM->saisirNomUtilisateur();
-    choisirMot(theme);
+    difficulte = monIHM->choisirDifficulte();
+    definirMot(theme, difficulte);
     masquerMot();
 
     do
@@ -96,7 +99,7 @@ string Pendu::selectionnerFichier(unsigned int theme)
     }
 }
 
-void Pendu::choisirMot(unsigned int theme)
+void Pendu::definirMot(unsigned int theme, unsigned int difficulte)
 {
     ifstream listeMots(selectionnerFichier(theme));
 #ifdef DEBUG_THEME
@@ -106,17 +109,49 @@ void Pendu::choisirMot(unsigned int theme)
     if(listeMots.is_open())
     {
         string mot;
-        while(getline(listeMots, mot))
+        do
         {
-            mots.push_back(mot);
-        }
-        motADeviner = mots[rand() % mots.size()];
+            while(getline(listeMots, mot))
+            {
+                mots.push_back(mot);
+            }
+            motADeviner = mots[rand() % mots.size()];
+        } while(!estDeLaBonneTaille(difficulte,
+                                    motADeviner,
+                                    nombreCaracteresMaxFacile,
+                                    nombreCaracteresMaxMoyen));
     }
     else
     {
-        monIHM->afficherErreurFichierOuvert();
+        monIHM->afficherErreurOuvertureFichier();
     }
 }
+
+bool Pendu::estDeLaBonneTaille(unsigned int       difficulte,
+                               string             motADeviner,
+                               const unsigned int nombreCaracteresMaxFacile,
+                               const unsigned int nombreCaracteresMaxMoyen)
+{
+    switch(difficulte)
+    {
+        case 1:
+            return true;
+            break;
+        case 2:
+            return (motADeviner.size() <= nombreCaracteresMaxFacile);
+            break;
+        case 3:
+            return ((motADeviner.size() > nombreCaracteresMaxFacile) &&
+                    (motADeviner.size() <= nombreCaracteresMaxMoyen));
+            break;
+        case 4:
+            return (motADeviner.size() > nombreCaracteresMaxMoyen);
+        default:
+            return true;
+            break;
+    }
+}
+
 void Pendu::masquerMot()
 {
     motMasque        = motADeviner;
