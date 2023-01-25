@@ -15,8 +15,8 @@ Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’orig
 |Saisir le nom du joueur             | X |   |
 |Jouer une partie                    | X |   |
 |Afficher le déroulement d’une partie| X |   |
-|Afficher le menu                    | x |   |
-|Choisir Theme                       | x |   |
+|Afficher le menu                    | X |   |
+|Choisir Theme                       | X |   |
 
 
 
