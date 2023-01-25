@@ -4,8 +4,8 @@
 #include <vector>
 #include <string>
 
-#define DEBUG_PENDU
-#define DEBUG_CHOIX
+// #define DEBUG_PENDU
+// #define DEBUG_CHOIX
 
 #define NB_ESSAIS_MAX_DEFAUT 8
 

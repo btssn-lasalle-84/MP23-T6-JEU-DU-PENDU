@@ -4,7 +4,7 @@
 #include <fstream>
 #include <limits>
 
-#define DEBUG_THEME
+// #define DEBUG_THEME
 
 using namespace std;
 
@@ -60,7 +60,7 @@ void Pendu::jouer()
         char lettre = '\0';
         do
         {
-            lettre = monIHM->entrerUneLettre(lettre);
+            lettre = toupper(monIHM->entrerUneLettre(lettre));
         } while(!estUneLettreValide(lettre));
         lettresUtilisees += lettre;
         remplacerLettre(lettre);
@@ -116,6 +116,10 @@ void Pendu::definirMot(unsigned int theme, unsigned int difficulte)
                 mots.push_back(mot);
             }
             motADeviner = mots[rand() % mots.size()];
+#ifdef DEBUG_PENDU
+            std::cout << "[" << __PRETTY_FUNCTION__ << ":" << __LINE__
+                      << "] Mot à deviner = " << motADeviner << std::endl;
+#endif
         } while(!estDeLaBonneTaille(difficulte,
                                     motADeviner,
                                     nombreCaracteresMaxFacile,
@@ -212,10 +216,10 @@ bool Pendu::aGagne(string motADeviner, string motMasque) const
 
 void Pendu::reinitialiserPendu()
 {
-    echecs           = 0;
-    motADeviner      = "";
-    motMasque        = "";
-    lettresUtilisees = "";
-    victoire         = false;
+    echecs             = 0;
+    motADeviner        = "";
+    motMasque          = "";
+    lettresUtilisees   = "";
+    victoire           = false;
     cin.ignore(numeric_limits<streamsize>::max(), '\n'); // on vide tout
 }
