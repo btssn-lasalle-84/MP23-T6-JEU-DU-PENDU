@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
-#include <stdlib.h>
 
 // #define DEBUG_THEME
 
@@ -13,7 +12,7 @@ Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "" }, nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT),
     nombreCaracteresMaxFacile(DIFFICULTE_FACILE),
     nombreCaracteresMaxMoyen(DIFFICULTE_MOYEN), echecs(0), theme(0),
-    motADeviner(""), motMasque(""), victoire(false)
+    difficulte(1), temps(0), motADeviner(""), motMasque(""), victoire(false)
 {
     srand(time(NULL));
 }
@@ -57,6 +56,7 @@ void Pendu::jouer()
     definirMot(theme, difficulte);
     masquerMot();
 
+    int debutChrono = time(NULL);
     do
     {
         monIHM->afficherMot(motMasque);
@@ -65,15 +65,22 @@ void Pendu::jouer()
         {
             lettre = toupper(monIHM->entrerUneLettre(lettre));
         } while(!estUneLettreValide(lettre));
+
         lettresUtilisees += lettre;
         system("clear");
+
         remplacerLettre(lettre);
         monIHM->afficherPendu(echecs);
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
     } while(!estFinie());
+    temps = time(NULL) - debutChrono;
 
     victoire = aGagne(motADeviner, motMasque);
-    monIHM->afficherResume(echecs, motADeviner, victoire, nombreEssaisMax);
+    monIHM->afficherResume(echecs,
+                           motADeviner,
+                           victoire,
+                           nombreEssaisMax,
+                           temps);
 
     reinitialiserPendu();
 }
