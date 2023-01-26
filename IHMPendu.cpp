@@ -82,6 +82,12 @@ void IHMPendu::afficherResume(unsigned int       echecs,
 {
     if(victoire)
     {
+        if(echecs == 0)
+        {
+            cout << "Bravo " << nom
+                 << " ! Vous avez trouvé le mot du premier coup !" << endl
+                 << endl;
+        }
         cout << "Bravo " << nom << " ! Vous avez trouvé le mot en " << echecs
              << " tentative" << ((echecs > 1) ? ("s") : ("")) << endl
              << endl;
@@ -97,6 +103,8 @@ string IHMPendu::saisirNomUtilisateur()
 {
     cout << "Saisisez votre pseudo : ";
     cin >> nom;
+    system("clear");
+    cout << "Bienvenue " << nom << endl;
     return nom;
 }
 
@@ -167,6 +175,7 @@ unsigned int IHMPendu::entrerValeurChoix()
         }
         break;
     }
+    system("clear");
     return choix;
 }
 
