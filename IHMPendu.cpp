@@ -86,14 +86,19 @@ void IHMPendu::afficherResume(unsigned int       echecs,
         if(echecs == 0)
         {
             cout << "Bravo " << nom
-                 << " ! Vous avez trouvé le mot du premier coup en " << temps
+                 << " ! Vous avez trouvé le mot du premier coup en "
+                 << ((temps >= 60) ? ((temps % 60) + temps) : (temps))
                  << " secondes !" << endl
                  << endl;
         }
-        cout << "Bravo " << nom << " ! Vous avez trouvé le mot en " << echecs
-             << " tentative" << ((echecs == 1) ? ("s, et en ") : (", et en "))
-             << temps << " secondes." << endl
-             << endl;
+        else
+        {
+            cout << "Bravo " << nom << " ! Vous avez trouvé le mot en "
+                 << echecs << " tentative"
+                 << ((echecs != 1) ? ("s, et en ") : (", et en ")) << temps
+                 << " secondes." << endl
+                 << endl;
+        }
     }
     else
     {
@@ -163,6 +168,7 @@ void IHMPendu::afficherInfoMenu() const
     cout << "2. Jouer au jeu" << endl;
     cout << "3. Quitter" << endl;
 }
+
 unsigned int IHMPendu::entrerValeurChoix()
 {
     unsigned int choix = 0;
