@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
+#include <stdlib.h>
 
 // #define DEBUG_THEME
 
@@ -28,6 +29,7 @@ void Pendu::menu()
     {
         monIHM->afficherInfoMenu();
         int choix = monIHM->entrerValeurChoix();
+        system("clear");
         switch(choix)
         {
             case 1:
@@ -51,6 +53,7 @@ void Pendu::jouer()
 {
     monIHM->saisirNomUtilisateur();
     difficulte = monIHM->choisirDifficulte();
+    system("clear");
     definirMot(theme, difficulte);
     masquerMot();
 
@@ -63,6 +66,7 @@ void Pendu::jouer()
             lettre = toupper(monIHM->entrerUneLettre(lettre));
         } while(!estUneLettreValide(lettre));
         lettresUtilisees += lettre;
+        system("clear");
         remplacerLettre(lettre);
         monIHM->afficherPendu(echecs);
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
@@ -216,10 +220,10 @@ bool Pendu::aGagne(string motADeviner, string motMasque) const
 
 void Pendu::reinitialiserPendu()
 {
-    echecs             = 0;
-    motADeviner        = "";
-    motMasque          = "";
-    lettresUtilisees   = "";
-    victoire           = false;
+    echecs           = 0;
+    motADeviner      = "";
+    motMasque        = "";
+    lettresUtilisees = "";
+    victoire         = false;
     cin.ignore(numeric_limits<streamsize>::max(), '\n'); // on vide tout
 }
