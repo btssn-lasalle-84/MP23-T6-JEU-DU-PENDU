@@ -25,6 +25,7 @@ class Pendu
     unsigned int             echecs;
     unsigned int             theme;
     unsigned int             difficulte;
+    unsigned int             temps;
     std::string              motADeviner;
     std::string              motMasque;
     std::string              lettresUtilisees;

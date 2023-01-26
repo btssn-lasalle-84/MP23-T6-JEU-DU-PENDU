@@ -78,18 +78,21 @@ void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
 void IHMPendu::afficherResume(unsigned int       echecs,
                               string             motADeviner,
                               bool               victoire,
-                              const unsigned int nombreEssaisMax) const
+                              const unsigned int nombreEssaisMax,
+                              unsigned int       temps) const
 {
     if(victoire)
     {
         if(echecs == 0)
         {
             cout << "Bravo " << nom
-                 << " ! Vous avez trouvé le mot du premier coup !" << endl
+                 << " ! Vous avez trouvé le mot du premier coup en " << temps
+                 << " secondes !" << endl
                  << endl;
         }
         cout << "Bravo " << nom << " ! Vous avez trouvé le mot en " << echecs
-             << " tentative" << ((echecs > 1) ? ("s") : ("")) << endl
+             << " tentative" << ((echecs == 1) ? ("s, et en ") : (", et en "))
+             << temps << " secondes." << endl
              << endl;
     }
     else
