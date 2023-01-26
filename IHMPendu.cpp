@@ -95,7 +95,8 @@ void IHMPendu::afficherResume(unsigned int       echecs,
     else
     {
         cout << "Aïe ! Vous avez atteint la limite de tentatives, le mot était "
-             << motADeviner << endl;
+             << motADeviner << endl
+             << endl;
     }
 }
 
