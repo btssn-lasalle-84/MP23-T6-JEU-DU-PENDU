@@ -28,7 +28,7 @@ class IHMPendu
                         std::string        motADeviner,
                         bool               victoire,
                         const unsigned int nombreEssaisMax,
-                        unsigned int temps) const;
+                        unsigned int       temps) const;
 
     std::string  saisirNomUtilisateur();
     unsigned int choisirDifficulte();
@@ -41,6 +41,9 @@ class IHMPendu
     void         afficherAuRevoir() const;
     void         afficherErreurChoix() const;
     void         afficherErreurOuvertureFichier() const;
+    std::string  getNomUtilisateur();
+    void         afficherHistorique();
+    void         afficherErreurOuvertureFichierHistorique();
 };
 
 #endif

@@ -38,6 +38,9 @@ void Pendu::menu()
                 jouer();
                 break;
             case 3:
+                monIHM->afficherHistorique();
+                break;
+            case 4:
                 fermetureProgramme = true;
                 monIHM->afficherAuRevoir();
                 break;
@@ -81,7 +84,7 @@ void Pendu::jouer()
                            victoire,
                            nombreEssaisMax,
                            temps);
-
+    sauvegarderHistorique();
     reinitialiserPendu();
 }
 
@@ -233,4 +236,57 @@ void Pendu::reinitialiserPendu()
     lettresUtilisees = "";
     victoire         = false;
     cin.ignore(numeric_limits<streamsize>::max(), '\n'); // on vide tout
+}
+
+void Pendu::sauvegarderHistorique()
+{
+    ofstream fichierHistorique("historique.txt", ios::app);
+    if(fichierHistorique.is_open())
+    {
+        static bool enteteAffichee = false;
+        if(!enteteAffichee)
+        {
+            fichierHistorique
+              << "| Nom Utilisateur | Mot | Echecs | Temps (sec) | Victoire |"
+              << endl;
+            enteteAffichee = true;
+        }
+
+        string victoire = (this->victoire) ? "Oui" : "Non";
+
+        fichierHistorique << "| " << monIHM->getNomUtilisateur() << " | "
+                          << motADeviner << " | " << echecs << " | " << temps
+                          << " | " << victoire << " |" << endl;
+        fichierHistorique.close();
+        definitionNbLigneHistoriquePendu();
+    }
+    else
+    {
+        monIHM->afficherErreurOuvertureFichierHistorique();
+    }
+}
+
+void Pendu::definitionNbLigneHistoriquePendu()
+{
+    ifstream       ifs("historique.txt", ios::in);
+    vector<string> lines;
+    string         line;
+    while(getline(ifs, line))
+    {
+        lines.push_back(line);
+    }
+    ifs.close();
+
+    if(lines.size() >
+       11) // si il y a plus de 11 lignes (10 parties + 1 ligne pour l'entête)
+    {
+        lines.erase(lines.begin() + 1); // on supprime la plus ancienne partie
+    }
+
+    ofstream ofs("historique.txt", ios::out | ios::trunc);
+    for(const auto& l: lines)
+    {
+        ofs << l << endl;
+    }
+    ofs.close();
 }

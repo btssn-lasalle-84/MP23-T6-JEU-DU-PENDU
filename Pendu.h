@@ -49,6 +49,9 @@ class Pendu
     bool        estFinie() const;
     bool        aGagne(std::string motADeviner, std::string motMasque) const;
     void        reinitialiserPendu();
+
+    void sauvegarderHistorique();
+    void definitionNbLigneHistoriquePendu();
 };
 
 #endif
