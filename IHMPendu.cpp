@@ -1,7 +1,7 @@
 #include "IHMPendu.h"
 #include <iostream>
 #include <limits>
-
+#include <fstream>
 using namespace std;
 
 IHMPendu::IHMPendu() : lettresUtilisees(""), lettresDevinees("")
@@ -116,6 +116,10 @@ string IHMPendu::saisirNomUtilisateur()
     cout << "Bienvenue " << nom << endl;
     return nom;
 }
+string IHMPendu::getNomUtilisateur()
+{
+    return nom;
+}
 
 unsigned int IHMPendu::choisirDifficulte()
 {
@@ -166,7 +170,8 @@ void IHMPendu::afficherInfoMenu() const
 
     cout << "1. Afficher les règles" << endl;
     cout << "2. Jouer au jeu" << endl;
-    cout << "3. Quitter" << endl;
+    cout << "3. Historique" << endl;
+    cout << "4. Quitter" << endl;
 }
 
 unsigned int IHMPendu::entrerValeurChoix()
@@ -201,4 +206,27 @@ void IHMPendu::afficherErreurChoix() const
 void IHMPendu::afficherErreurOuvertureFichier() const
 {
     cerr << "Impossible d'ouvrir le fichier" << endl;
+}
+
+void IHMPendu::afficherHistorique()
+{
+    ifstream fichierHistorique("historique.txt");
+    if(fichierHistorique.is_open())
+    {
+        string ligne;
+        while(getline(fichierHistorique, ligne))
+        {
+            cout << ligne << endl;
+        }
+    }
+    else
+    {
+        cout << "Aucun historique de parties disponible." << endl;
+    }
+    fichierHistorique.close();
+}
+
+void IHMPendu::afficherErreurOuvertureFichierHistorique()
+{
+    cout << "Impossible d'ouvrir le fichier historique.txt" << endl;
 }
