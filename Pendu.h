@@ -4,10 +4,13 @@
 #include <vector>
 #include <string>
 
-#define DEBUG_PENDU
+// #define DEBUG_PENDU
+// #define DEBUG_CHOIX
 
 #define NB_ESSAIS_MAX_DEFAUT 8
-#define DEBUG_CHOIX
+
+#define DIFFICULTE_FACILE 4
+#define DIFFICULTE_MOYEN  6
 
 class IHMPendu;
 
@@ -16,9 +19,12 @@ class Pendu
   private:
     IHMPendu*                monIHM;
     std::vector<std::string> mots;
-    unsigned int             nombreEssaisMax;
+    const unsigned int       nombreEssaisMax;
+    const unsigned int       nombreCaracteresMaxFacile;
+    const unsigned int       nombreCaracteresMaxMoyen;
     unsigned int             echecs;
     unsigned int             theme;
+    unsigned int             difficulte;
     std::string              motADeviner;
     std::string              motMasque;
     std::string              lettresUtilisees;
@@ -29,7 +35,11 @@ class Pendu
     ~Pendu();
 
     std::string selectionnerFichier(unsigned int theme);
-    void        choisirMot(unsigned int theme);
+    void        definirMot(unsigned int theme, unsigned int difficulte);
+    bool        estDeLaBonneTaille(unsigned int       difficulte,
+                                   std::string        motADeviner,
+                                   const unsigned int nombreCaracteresMaxFacile,
+                                   const unsigned int nombreCaracteresMaxMoyen);
     void        masquerMot();
     void        menu();
     void        jouer();
