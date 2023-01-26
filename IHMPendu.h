@@ -27,7 +27,8 @@ class IHMPendu
     void afficherResume(unsigned int       echecs,
                         std::string        motADeviner,
                         bool               victoire,
-                        const unsigned int nombreEssaisMax, unsigned int temps) const;
+                        const unsigned int nombreEssaisMax,
+                        unsigned int temps) const;
 
     std::string  saisirNomUtilisateur();
     unsigned int choisirDifficulte();
