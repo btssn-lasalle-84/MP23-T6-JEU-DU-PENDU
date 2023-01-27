@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
+#include <iomanip>
 
 // #define DEBUG_THEME
 
@@ -243,20 +244,16 @@ void Pendu::sauvegarderHistorique()
     ofstream fichierHistorique("historique.txt", ios::app);
     if(fichierHistorique.is_open())
     {
-        static bool enteteAffichee = false;
-        if(!enteteAffichee)
-        {
-            fichierHistorique
-              << "| Nom Utilisateur | Mot | Echecs | Temps (sec) | Victoire |"
-              << endl;
-            enteteAffichee = true;
-        }
-
         string victoire = (this->victoire) ? "Oui" : "Non";
 
-        fichierHistorique << "| " << monIHM->getNomUtilisateur() << " | "
-                          << motADeviner << " | " << echecs << " | " << temps
-                          << " | " << victoire << " |" << endl;
+        fichierHistorique << "| " << left << setw(15) << setfill(' ')
+                          << monIHM->getNomUtilisateur() << " | " << left
+                          << setw(15) << setfill(' ') << motADeviner << " | "
+                          << left << setw(10) << setfill(' ') << difficulte
+                          << " | " << left << setw(6) << setfill(' ') << echecs
+                          << " | " << left << setw(5) << setfill(' ') << temps
+                          << " | " << left << setw(8) << setfill(' ')
+                          << victoire << " |" << endl;
         fichierHistorique.close();
         definitionNbLigneHistoriquePendu();
     }
@@ -277,10 +274,9 @@ void Pendu::definitionNbLigneHistoriquePendu()
     }
     ifs.close();
 
-    if(lines.size() >
-       11) // si il y a plus de 11 lignes (10 parties + 1 ligne pour l'entête)
+    if(lines.size() > 10) // si il y a plus de 10 lignes (10 parties)
     {
-        lines.erase(lines.begin() + 1); // on supprime la plus ancienne partie
+        lines.erase(lines.begin()); // on supprime la plus ancienne partie
     }
 
     ofstream ofs("historique.txt", ios::out | ios::trunc);

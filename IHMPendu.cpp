@@ -2,6 +2,8 @@
 #include <iostream>
 #include <limits>
 #include <fstream>
+#include <iomanip>
+
 using namespace std;
 
 IHMPendu::IHMPendu() : lettresUtilisees(""), lettresDevinees("")
@@ -210,6 +212,18 @@ void IHMPendu::afficherErreurOuvertureFichier() const
 
 void IHMPendu::afficherHistorique()
 {
+    /*static bool enteteAffichee = false;
+    if(!enteteAffichee)
+    {*/
+    cout << "| Nom Utilisateur | Mot             | Difficulté | Echecs | "
+            "Temps | "
+            "Victoire |"
+         << endl;
+    cout << "|                 |                 |            |        |      "
+            " |          |"
+         << endl;
+    //  enteteAffichee = true;
+    //}
     ifstream fichierHistorique("historique.txt");
     if(fichierHistorique.is_open())
     {
@@ -223,6 +237,7 @@ void IHMPendu::afficherHistorique()
     {
         cout << "Aucun historique de parties disponible." << endl;
     }
+    cout << endl;
     fichierHistorique.close();
 }
 
