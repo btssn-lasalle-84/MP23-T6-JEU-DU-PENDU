@@ -16,18 +16,28 @@ IHMPendu::~IHMPendu()
 
 void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax) const
 {
-    cout << "Voici les règles :" << endl << endl
+    cout
+      << "Voici les règles :" << endl
+      << endl
       << "1. Un mot sera choisi au hasard pour que vous essayiez de le deviner."
-      << endl << "2. Vous aurez un maximum de " << nombreEssaisMax
-         << " tentatives pour deviner le mot correctement." << endl << "3. Vous pouvez deviner une lettre à la fois. Si la lettre est "
-            "dans le mot, elle sera révélée à la bonne position."
-         << endl << "4. Si la lettre n'est pas dans le mot, vous perdrez une tentative."
-         << endl << "5. Si vous révélez le mot entier avant d'épuiser vos tentatives, "
-            "vous gagnez le jeu."
-         << endl << "6. Si vous épuisez vos tentatives avant de révéler le mot entier, "
-            "vous perdez le jeu."
-         << endl << "7. Le score est calculé en fonction de la difficulté, du nombre de tentatives et du temps prit pour deviner le mot." << endl
-         << endl;
+      << endl
+      << "2. Vous aurez un maximum de " << nombreEssaisMax
+      << " tentatives pour deviner le mot correctement." << endl
+      << "3. Vous pouvez deviner une lettre à la fois. Si la lettre est "
+         "dans le mot, elle sera révélée à la bonne position."
+      << endl
+      << "4. Si la lettre n'est pas dans le mot, vous perdrez une tentative."
+      << endl
+      << "5. Si vous révélez le mot entier avant d'épuiser vos tentatives, "
+         "vous gagnez le jeu."
+      << endl
+      << "6. Si vous épuisez vos tentatives avant de révéler le mot entier, "
+         "vous perdez le jeu."
+      << endl
+      << "7. Le score est calculé en fonction de la difficulté, du nombre de "
+         "tentatives et du temps prit pour deviner le mot."
+      << endl
+      << endl;
     cout << "Bonne chance !" << endl << endl;
 }
 
@@ -206,9 +216,11 @@ void IHMPendu::afficherErreurOuvertureFichier() const
 
 void IHMPendu::afficherHistorique()
 {
-    cout << "| Score  | Nom Utilisateur |       Mot       | Difficulté | Echecs | Temps | Victoire |"
+    cout << "| Score  | Nom Utilisateur |       Mot       | Difficulté | "
+            "Echecs | Temps | Victoire |"
          << endl;
-    cout << "|        |                 |                 |            |        |       |          |"
+    cout << "|        |                 |                 |            |       "
+            " |       |          |"
          << endl;
     ifstream fichierHistorique("historique.txt");
     if(fichierHistorique.is_open())
