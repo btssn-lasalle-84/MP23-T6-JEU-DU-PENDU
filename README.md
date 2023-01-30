@@ -17,14 +17,9 @@ Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’orig
 |Afficher le déroulement d’une partie| X |   |
 |Afficher le menu                    | X |   |
 |Choisir Theme                       | X |   |
-
-
-
-## Liste des choses à faire
-
-- [ ] `Joueur::choisirDifficulté()` : permettre à l'utilisateur de choisir une niveau de difficulté
-- [ ] `Joueur::chronometrer()` : chronométrer la partie
-- [ ] `Joueur::sauvegarderRecords()` : sauvegarder les meilleurs scores
+|Choisir la difficulté               | X |   |
+|Chronomètrer                        | X |   |
+|Sauvegarder les meilleurs scores    | X |   |
 
 
 ## Informations
@@ -32,5 +27,5 @@ Quand le dessin est terminé on voit un bonhomme allumette qui se pend. L’orig
 - Auteurs : 
   - Alexis Vaillen <<alexis.vaillen@gmail.com>>
   - Axel Lapierre  <<lapierre.axel30@gmail.com>>
-- Date : 23 janvier 2023
-- Version : 2.0
+- Date : 30 janvier 2023
+- Version : 3.0
