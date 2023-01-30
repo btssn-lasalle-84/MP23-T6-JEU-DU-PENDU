@@ -1,6 +1,8 @@
 #include "IHMPendu.h"
 #include <iostream>
 #include <limits>
+#include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -14,24 +16,28 @@ IHMPendu::~IHMPendu()
 
 void IHMPendu::afficherRegles(const unsigned int nombreEssaisMax) const
 {
-    cout << "Voici les règles :" << endl << endl;
     cout
+      << "Voici les règles :" << endl
+      << endl
       << "1. Un mot sera choisi au hasard pour que vous essayiez de le deviner."
+      << endl
+      << "2. Vous aurez un maximum de " << nombreEssaisMax
+      << " tentatives pour deviner le mot correctement." << endl
+      << "3. Vous pouvez deviner une lettre à la fois. Si la lettre est "
+         "dans le mot, elle sera révélée à la bonne position."
+      << endl
+      << "4. Si la lettre n'est pas dans le mot, vous perdrez une tentative."
+      << endl
+      << "5. Si vous révélez le mot entier avant d'épuiser vos tentatives, "
+         "vous gagnez le jeu."
+      << endl
+      << "6. Si vous épuisez vos tentatives avant de révéler le mot entier, "
+         "vous perdez le jeu."
+      << endl
+      << "7. Le score est calculé en fonction de la difficulté, du nombre de "
+         "tentatives et du temps prit pour deviner le mot."
+      << endl
       << endl;
-    cout << "2. Vous aurez un maximum de " << nombreEssaisMax
-         << " tentatives pour deviner le mot correctement." << endl;
-    cout << "3. Vous pouvez deviner une lettre à la fois. Si la lettre est "
-            "dans le mot, elle sera révélée à la bonne position."
-         << endl;
-    cout << "4. Si la lettre n'est pas dans le mot, vous perdrez une tentative."
-         << endl;
-    cout << "5. Si vous révélez le mot entier avant d'épuiser vos tentatives, "
-            "vous gagnez le jeu."
-         << endl;
-    cout << "6. Si vous épuisez vos tentatives avant de révéler le mot entier, "
-            "vous perdez le jeu."
-         << endl
-         << endl;
     cout << "Bonne chance !" << endl << endl;
 }
 
@@ -78,18 +84,33 @@ void IHMPendu::afficherInfos(const unsigned int nombreEssaisMax,
 void IHMPendu::afficherResume(unsigned int       echecs,
                               string             motADeviner,
                               bool               victoire,
-                              const unsigned int nombreEssaisMax) const
+                              const unsigned int nombreEssaisMax,
+                              unsigned int       temps) const
 {
     if(victoire)
     {
-        cout << "Bravo " << nom << " ! Vous avez trouvé le mot en " << echecs
-             << " tentative" << ((echecs > 1) ? ("s") : ("")) << endl
-             << endl;
+        if(echecs == 0)
+        {
+            cout << "Bravo " << nom
+                 << " ! Vous avez trouvé le mot du premier coup en "
+                 << ((temps >= 60) ? ((temps % 60) + temps) : (temps))
+                 << " secondes !" << endl
+                 << endl;
+        }
+        else
+        {
+            cout << "Bravo " << nom << " ! Vous avez trouvé le mot en "
+                 << echecs << " tentative"
+                 << ((echecs != 1) ? ("s, et en ") : (", et en ")) << temps
+                 << " secondes." << endl
+                 << endl;
+        }
     }
     else
     {
         cout << "Aïe ! Vous avez atteint la limite de tentatives, le mot était "
-             << motADeviner << endl;
+             << motADeviner << endl
+             << endl;
     }
 }
 
@@ -97,7 +118,24 @@ string IHMPendu::saisirNomUtilisateur()
 {
     cout << "Saisisez votre pseudo : ";
     cin >> nom;
+    system("clear");
+    cout << "Bienvenue " << nom << endl;
     return nom;
+}
+string IHMPendu::getNomUtilisateur()
+{
+    return nom;
+}
+
+unsigned int IHMPendu::choisirDifficulte()
+{
+    cout << endl
+         << "Choississez un niveau de difficulté:" << endl
+         << "1: Nombre de caractères aléatoire" << endl
+         << "2: Facile (entre 3 et 4 caractères)" << endl
+         << "3: Moyen (entre 5 et 6 caractères)" << endl
+         << "4: Difficile (plus de 7 caractères)";
+    return (entrerValeurChoix());
 }
 
 char IHMPendu::entrerUneLettre(char lettre)
@@ -119,7 +157,7 @@ void IHMPendu::afficherErreurLettreDejaUtilisee() const
     cout << "Vous avez déja entré cette lettre" << endl;
 }
 
-int IHMPendu::choisirTheme()
+unsigned int IHMPendu::choisirTheme()
 {
     cout << endl
          << "Choississez un thème:" << endl
@@ -128,7 +166,7 @@ int IHMPendu::choisirTheme()
          << "3: Objets" << endl
          << "4: Pays" << endl
          << "5: Animaux";
-    entrerValeurChoix();
+    return (entrerValeurChoix());
 }
 
 void IHMPendu::afficherInfoMenu() const
@@ -138,11 +176,13 @@ void IHMPendu::afficherInfoMenu() const
 
     cout << "1. Afficher les règles" << endl;
     cout << "2. Jouer au jeu" << endl;
-    cout << "3. Quitter" << endl;
+    cout << "3. Historique" << endl;
+    cout << "4. Quitter" << endl;
 }
-int IHMPendu::entrerValeurChoix()
+
+unsigned int IHMPendu::entrerValeurChoix()
 {
-    int choix = 0;
+    unsigned int choix = 0;
     while(true)
     {
         cout << endl << "Entrez votre choix : ";
@@ -151,12 +191,12 @@ int IHMPendu::entrerValeurChoix()
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cerr << "Choix invalide. S'il vous plaît entrer un entiers : "
-                 << endl;
+            afficherErreurChoix();
             continue;
         }
         break;
     }
+    system("clear");
     return choix;
 }
 
@@ -166,10 +206,40 @@ void IHMPendu::afficherAuRevoir() const
 }
 void IHMPendu::afficherErreurChoix() const
 {
-    cerr << "Erreur:veuillez saisir un entier" << endl;
+    cerr << "Erreur: veuillez saisir un entier" << endl;
 }
 
-void IHMPendu::afficherErreurFichierOuvert()
+void IHMPendu::afficherErreurOuvertureFichier() const
 {
-    cerr << "Impossible d'ouvrir le fichier de mots" << endl;
+    cerr << "Impossible d'ouvrir le fichier" << endl;
+}
+
+void IHMPendu::afficherHistorique()
+{
+    cout << "| Score  | Nom Utilisateur |       Mot       | Difficulté | "
+            "Echecs | Temps | Victoire |"
+         << endl;
+    cout << "|        |                 |                 |            |       "
+            " |       |          |"
+         << endl;
+    ifstream fichierHistorique("historique.txt");
+    if(fichierHistorique.is_open())
+    {
+        string ligne;
+        while(getline(fichierHistorique, ligne))
+        {
+            cout << ligne << endl;
+        }
+    }
+    else
+    {
+        cout << "Aucun historique de parties disponible." << endl;
+    }
+    cout << endl;
+    fichierHistorique.close();
+}
+
+void IHMPendu::afficherErreurOuvertureFichierHistorique()
+{
+    cout << "Impossible d'ouvrir le fichier historique.txt" << endl;
 }

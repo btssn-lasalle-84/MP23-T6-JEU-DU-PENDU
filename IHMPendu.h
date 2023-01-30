@@ -27,18 +27,23 @@ class IHMPendu
     void afficherResume(unsigned int       echecs,
                         std::string        motADeviner,
                         bool               victoire,
-                        const unsigned int nombreEssaisMax) const;
+                        const unsigned int nombreEssaisMax,
+                        unsigned int       temps) const;
 
-    std::string saisirNomUtilisateur();
-    char        entrerUneLettre(char lettre);
-    void        afficherErreurLettre() const;
-    void        afficherErreurLettreDejaUtilisee() const;
-    int         choisirTheme();
-    void        afficherInfoMenu() const;
-    int         entrerValeurChoix();
-    void        afficherAuRevoir() const;
-    void        afficherErreurChoix() const;
-    void        afficherErreurFichierOuvert();
+    std::string  saisirNomUtilisateur();
+    unsigned int choisirDifficulte();
+    char         entrerUneLettre(char lettre);
+    void         afficherErreurLettre() const;
+    void         afficherErreurLettreDejaUtilisee() const;
+    unsigned int choisirTheme();
+    void         afficherInfoMenu() const;
+    unsigned int entrerValeurChoix();
+    void         afficherAuRevoir() const;
+    void         afficherErreurChoix() const;
+    void         afficherErreurOuvertureFichier() const;
+    std::string  getNomUtilisateur();
+    void         afficherHistorique();
+    void         afficherErreurOuvertureFichierHistorique();
 };
 
 #endif
