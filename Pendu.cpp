@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
+#include <iomanip>
 
 // #define DEBUG_THEME
 
@@ -12,7 +13,8 @@ Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "" }, nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT),
     nombreCaracteresMaxFacile(DIFFICULTE_FACILE),
     nombreCaracteresMaxMoyen(DIFFICULTE_MOYEN), echecs(0), theme(0),
-    difficulte(1), temps(0), motADeviner(""), motMasque(""), victoire(false)
+    difficulte(1), temps(0), score(0), motADeviner(""), motMasque(""),
+    victoire(false)
 {
     srand(time(NULL));
 }
@@ -76,14 +78,22 @@ void Pendu::jouer()
         monIHM->afficherPendu(echecs);
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
     } while(!estFinie());
+
     temps = time(NULL) - debutChrono;
 
     victoire = aGagne(motADeviner, motMasque);
+
     monIHM->afficherResume(echecs,
                            motADeviner,
                            victoire,
                            nombreEssaisMax,
                            temps);
+
+    if(echecs != 0)
+        score = (1000 / ((echecs * temps) / motADeviner.size()));
+    else
+        score = (1000 / (temps / motADeviner.size()));
+
     sauvegarderHistorique();
     reinitialiserPendu();
 }
@@ -243,20 +253,17 @@ void Pendu::sauvegarderHistorique()
     ofstream fichierHistorique("historique.txt", ios::app);
     if(fichierHistorique.is_open())
     {
-        static bool enteteAffichee = false;
-        if(!enteteAffichee)
-        {
-            fichierHistorique
-              << "| Nom Utilisateur | Mot | Echecs | Temps (sec) | Victoire |"
-              << endl;
-            enteteAffichee = true;
-        }
-
         string victoire = (this->victoire) ? "Oui" : "Non";
 
-        fichierHistorique << "| " << monIHM->getNomUtilisateur() << " | "
-                          << motADeviner << " | " << echecs << " | " << temps
-                          << " | " << victoire << " |" << endl;
+        fichierHistorique << "| " << left << setw(6) << setfill(' ') << score
+                          << " | " << left << setw(15) << setfill(' ')
+                          << monIHM->getNomUtilisateur() << " | " << left
+                          << setw(15) << setfill(' ') << motADeviner << " | "
+                          << left << setw(10) << setfill(' ') << difficulte
+                          << " | " << left << setw(6) << setfill(' ') << echecs
+                          << " | " << left << setw(5) << setfill(' ') << temps
+                          << " | " << left << setw(8) << setfill(' ')
+                          << victoire << " |" << endl;
         fichierHistorique.close();
         definitionNbLigneHistoriquePendu();
     }
@@ -277,10 +284,9 @@ void Pendu::definitionNbLigneHistoriquePendu()
     }
     ifs.close();
 
-    if(lines.size() >
-       11) // si il y a plus de 11 lignes (10 parties + 1 ligne pour l'entête)
+    if(lines.size() > 10) // si il y a plus de 10 lignes (10 parties)
     {
-        lines.erase(lines.begin() + 1); // on supprime la plus ancienne partie
+        lines.erase(lines.begin()); // on supprime la plus ancienne partie
     }
 
     ofstream ofs("historique.txt", ios::out | ios::trunc);
