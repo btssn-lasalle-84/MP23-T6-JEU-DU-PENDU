@@ -13,7 +13,7 @@ Pendu::Pendu() :
     monIHM(new IHMPendu), mots{ "" }, nombreEssaisMax(NB_ESSAIS_MAX_DEFAUT),
     nombreCaracteresMaxFacile(DIFFICULTE_FACILE),
     nombreCaracteresMaxMoyen(DIFFICULTE_MOYEN), echecs(0), theme(0),
-    difficulte(1), temps(0), motADeviner(""), motMasque(""), victoire(false)
+    difficulte(1), temps(0), score(0), motADeviner(""), motMasque(""), victoire(false)
 {
     srand(time(NULL));
 }
@@ -77,14 +77,20 @@ void Pendu::jouer()
         monIHM->afficherPendu(echecs);
         monIHM->afficherInfos(nombreEssaisMax, echecs, lettresUtilisees);
     } while(!estFinie());
+    
     temps = time(NULL) - debutChrono;
-
+    
     victoire = aGagne(motADeviner, motMasque);
+    
     monIHM->afficherResume(echecs,
                            motADeviner,
                            victoire,
                            nombreEssaisMax,
                            temps);
+    
+    if(echecs != 0)score = (1000 / ((echecs * temps)/motADeviner.size()));
+    else score = (1000 / (temps/motADeviner.size()));
+    
     sauvegarderHistorique();
     reinitialiserPendu();
 }
@@ -246,8 +252,9 @@ void Pendu::sauvegarderHistorique()
     {
         string victoire = (this->victoire) ? "Oui" : "Non";
 
-        fichierHistorique << "| " << left << setw(15) << setfill(' ')
-                          << monIHM->getNomUtilisateur() << " | " << left
+        fichierHistorique << "| " << left << setw(6) << setfill(' ')
+                          << score << " | " << left << setw(15) << setfill(' ')
+                          << monIHM->getNomUtilisateur() << " | "<< left
                           << setw(15) << setfill(' ') << motADeviner << " | "
                           << left << setw(10) << setfill(' ') << difficulte
                           << " | " << left << setw(6) << setfill(' ') << echecs
