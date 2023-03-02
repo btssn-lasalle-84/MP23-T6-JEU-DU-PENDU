@@ -1,0 +1,8 @@
+| 5      | titi            | KIGALI          | 1          | 8      | 150   | Non      |
+| 15     | titi            | REQUIN BALEINE  | 4          | 8      | 113   | Non      |
+| 21     | a               | GUAM            | 2          | 5      | 38    | Oui      |
+| 24     | a               | GUAM            | 2          | 4      | 41    | Oui      |
+| 1000   | a               | LAOS            | 2          | 0      | 5     | Oui      |
+| 58     | a               | DENTELE        | 5          | 8      | 17    | Non      |
+| 125    | a               | BAVARDER       | 0          | 7      | 11    | Oui      |
+| 26     | a               | POT            | 2          | 7      | 22    | Oui      |
